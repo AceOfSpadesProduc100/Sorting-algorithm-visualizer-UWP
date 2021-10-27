@@ -96,9 +96,3 @@ C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\MultipleQualifiersPerDimensionFou
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\ProjectArchitectures.txt
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\.winmd_cache\$Microsoft.Graphics.Canvas.winmd_637214750760000000.json
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637425031200000000.json
-C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\NAudio.Core.dll
-C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\NAudio.Wasapi.dll
-C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\NLayer.dll
-C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\NLayer.NAudioSupport.dll
-C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\Algo.csproj.CopyComplete
-C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\NAudio.Wasapi.pri.xml

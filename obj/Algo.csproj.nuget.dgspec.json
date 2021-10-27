@@ -61,18 +61,6 @@
             "Microsoft.UI.Xaml": {
               "target": "Package",
               "version": "[2.7.0, )"
-            },
-            "NAudio.Core": {
-              "target": "Package",
-              "version": "[2.0.0, )"
-            },
-            "NAudio.Wasapi": {
-              "target": "Package",
-              "version": "[2.0.0, )"
-            },
-            "NLayer.NAudioSupport": {
-              "target": "Package",
-              "version": "[1.3.0, )"
             }
           },
           "imports": [

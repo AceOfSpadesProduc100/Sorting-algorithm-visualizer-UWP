@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-10-27T20:13:53.730</Modified>
+      <Modified>2021-11-04T20:01:33.106</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Algo.exe">
       <PackagePath>entrypoint\Algo.exe</PackagePath>
-      <Modified>2021-10-27T20:13:52.503</Modified>
+      <Modified>2021-11-04T20:01:31.756</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -186,15 +186,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Algo.xr.xml">
       <PackagePath>Algo.xr.xml</PackagePath>
-      <Modified>2021-10-26T21:28:37.954</Modified>
+      <Modified>2021-10-29T00:52:17.170</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-10-27T20:13:52.412</Modified>
+      <Modified>2021-11-04T20:00:51.903</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2021-10-27T20:13:52.412</Modified>
+      <Modified>2021-11-04T20:00:51.903</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -206,11 +206,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2021-10-27T20:13:52.910</Modified>
+      <Modified>2021-11-01T21:38:38.274</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Core\Algo.exe">
       <PackagePath>Algo.exe</PackagePath>
-      <Modified>2021-10-27T20:13:53.724</Modified>
+      <Modified>2021-11-04T20:01:33.100</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>

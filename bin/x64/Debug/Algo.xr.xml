@@ -46,6 +46,7 @@
       <RootProperty Name="Header" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Items" />
+      <RootEvent Name="SelectionChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Slider">
       <RootProperty Name="Height" />

@@ -109,6 +109,9 @@
     <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.media\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Media\Microsoft.Toolkit.Uwp.UI.Controls.Media.xr.xml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Media\Microsoft.Toolkit.Uwp.UI.Controls.Media.xr.xml</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\placeholder dumps.txt">
+      <PackagePath>placeholder dumps.txt</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>

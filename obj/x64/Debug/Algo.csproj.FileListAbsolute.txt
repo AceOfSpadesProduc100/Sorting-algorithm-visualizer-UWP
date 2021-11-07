@@ -48,7 +48,6 @@ C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\System.Text.Json.dll
 C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Microsoft.Graphics.Canvas.dll
 C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Microsoft.Graphics.Canvas.winmd
 C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Microsoft.UI.Xaml.Markup.winmd
-C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\Algo.csproj.AssemblyReference.cache
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\App.g.i.cs
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\App.g.cs
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\MainPage.g.i.cs
@@ -96,3 +95,4 @@ C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\MultipleQualifiersPerDimensionFou
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\ProjectArchitectures.txt
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\.winmd_cache\$Microsoft.Graphics.Canvas.winmd_637214750760000000.json
 C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637425031200000000.json
+C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\Algo.csproj.AssemblyReference.cache

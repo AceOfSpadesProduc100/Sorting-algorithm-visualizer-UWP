@@ -8,9 +8,9 @@
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>Debug|x64</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
-    <PackageIdentityName>407fab2a-5158-419a-9b19-db26cf118f3a</PackageIdentityName>
+    <PackageIdentityName>69d0a006-ea85-4b73-8840-17aa56d3b160</PackageIdentityName>
     <PackageIdentityPublisher>CN=CDog2</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\CDog2\source\repos\Algo\obj\x64\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\CDog2\source\repos\AlgoUWP\obj\x64\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,187 +18,83 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>A6584829AD5E57309920D32ACE78B8F811F4BB208A4CA02076AAE24D6B49AC31</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>407fab2a-5158-419a-9b19-db26cf118f3a_1.0.0.0_x64__vptyc67paqpfc</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>407fab2a-5158-419a-9b19-db26cf118f3a_vptyc67paqpfc!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>407fab2a-5158-419a-9b19-db26cf118f3a</RegisteredPackageID>
+    <LayoutDir>C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>DD8A8C94EA2441E9546726C723D79FC0E482A27BD0568189A26671294DFAEEC6</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>69d0a006-ea85-4b73-8840-17aa56d3b160_1.0.0.0_x64__vptyc67paqpfc</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>69d0a006-ea85-4b73-8840-17aa56d3b160_vptyc67paqpfc!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>69d0a006-ea85-4b73-8840-17aa56d3b160</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=CDog2</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-07T17:07:01.387</Modified>
+      <Modified>2021-11-14T01:26:07.485</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Algo.exe">
-      <PackagePath>entrypoint\Algo.exe</PackagePath>
-      <Modified>2021-11-07T17:06:59.953</Modified>
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\AlgoUWP.exe">
+      <PackagePath>entrypoint\AlgoUWP.exe</PackagePath>
+      <Modified>2021-11-14T01:26:04.465</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
-      <PackagePath>ColorCode.Core.dll</PackagePath>
-      <Modified>2018-10-06T04:30:08.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\colorcode.uwp\2.0.6\lib\uap10.0\ColorCode.UWP.dll">
-      <PackagePath>ColorCode.UWP.dll</PackagePath>
-      <Modified>2018-10-06T04:30:16.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.bcl.asyncinterfaces\5.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
-      <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
-      <Modified>2020-10-19T18:40:26.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit\7.1.1\lib\netstandard2.0\Microsoft.Toolkit.dll">
-      <PackagePath>Microsoft.Toolkit.dll</PackagePath>
-      <Modified>2021-10-18T23:42:34.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.dll</PackagePath>
-      <Modified>2021-10-18T23:42:48.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.dll</PackagePath>
-      <Modified>2021-10-18T23:43:00.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.animations\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Animations.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Animations.dll</PackagePath>
-      <Modified>2021-10-18T23:43:04.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.core\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Core.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Core.dll</PackagePath>
-      <Modified>2021-10-18T23:43:10.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.datagrid\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.DataGrid.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.DataGrid.dll</PackagePath>
-      <Modified>2021-10-18T23:43:12.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.input\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Input.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Input.dll</PackagePath>
-      <Modified>2021-10-18T23:43:16.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.layout\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Layout.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Layout.dll</PackagePath>
-      <Modified>2021-10-18T23:43:18.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.markdown\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Markdown.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Markdown.dll</PackagePath>
-      <Modified>2021-10-18T23:43:20.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.media\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Media.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Media.dll</PackagePath>
-      <Modified>2021-10-18T23:43:22.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.primitives\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Primitives.dll">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Primitives.dll</PackagePath>
-      <Modified>2021-10-18T23:43:26.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.12\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
-      <Modified>2021-10-10T06:49:06.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\system.runtime.compilerservices.unsafe\5.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
-      <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
-      <Modified>2020-10-19T18:46:44.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\system.text.encodings.web\5.0.1\lib\netstandard2.0\System.Text.Encodings.Web.dll">
-      <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
-      <Modified>2021-02-16T21:53:32.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\system.text.json\5.0.2\lib\netstandard2.0\System.Text.Json.dll">
-      <PackagePath>System.Text.Json.dll</PackagePath>
-      <Modified>2021-03-16T22:34:16.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\win2d.uwp\1.25.0\runtimes\win10-x64\native\Microsoft.Graphics.Canvas.dll">
-      <PackagePath>Microsoft.Graphics.Canvas.dll</PackagePath>
-      <Modified>2020-04-03T01:46:32.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\win2d.uwp\1.25.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
-      <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
-      <Modified>2020-04-03T01:44:36.000</Modified>
+      <Modified>2021-02-05T05:15:54.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.19041.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2020-12-02T10:52:00.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.core\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Core\Microsoft.Toolkit.Uwp.UI.Controls.Core.xr.xml">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Core\Microsoft.Toolkit.Uwp.UI.Controls.Core.xr.xml</PackagePath>
-      <Modified>2021-10-18T23:19:06.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.datagrid\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.DataGrid\Microsoft.Toolkit.Uwp.UI.Controls.DataGrid.xr.xml">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.DataGrid\Microsoft.Toolkit.Uwp.UI.Controls.DataGrid.xr.xml</PackagePath>
-      <Modified>2021-10-18T23:13:04.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.input\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Input\Microsoft.Toolkit.Uwp.UI.Controls.Input.xr.xml">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Input\Microsoft.Toolkit.Uwp.UI.Controls.Input.xr.xml</PackagePath>
-      <Modified>2021-10-18T23:19:04.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.layout\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Layout\Microsoft.Toolkit.Uwp.UI.Controls.Layout.xr.xml">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Layout\Microsoft.Toolkit.Uwp.UI.Controls.Layout.xr.xml</PackagePath>
-      <Modified>2021-10-18T23:19:26.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.markdown\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Markdown\Microsoft.Toolkit.Uwp.UI.Controls.Markdown.xr.xml">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Markdown\Microsoft.Toolkit.Uwp.UI.Controls.Markdown.xr.xml</PackagePath>
-      <Modified>2021-10-18T23:19:36.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.toolkit.uwp.ui.controls.media\7.1.1\lib\uap10.0.17763\Microsoft.Toolkit.Uwp.UI.Controls.Media\Microsoft.Toolkit.Uwp.UI.Controls.Media.xr.xml">
-      <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls.Media\Microsoft.Toolkit.Uwp.UI.Controls.Media.xr.xml</PackagePath>
-      <Modified>2021-10-18T23:19:18.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\placeholder dumps.txt">
-      <PackagePath>placeholder dumps.txt</PackagePath>
-      <Modified>2021-11-06T00:50:10.695</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2021-10-26T01:11:35.747</Modified>
+      <Modified>2021-11-11T22:58:48.519</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2021-08-12T16:07:48.290</Modified>
+      <Modified>2021-11-10T16:18:04.820</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-08-12T16:07:48.295</Modified>
+      <Modified>2021-11-10T16:18:04.824</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-08-12T16:07:48.297</Modified>
+      <Modified>2021-11-10T16:18:04.825</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-08-12T16:07:48.298</Modified>
+      <Modified>2021-11-10T16:18:04.826</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-08-12T16:07:48.299</Modified>
+      <Modified>2021-11-10T16:18:04.827</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-08-12T16:07:48.300</Modified>
+      <Modified>2021-11-10T16:18:04.827</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-08-12T16:07:48.301</Modified>
+      <Modified>2021-11-10T16:18:04.828</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Algo.xr.xml">
-      <PackagePath>Algo.xr.xml</PackagePath>
-      <Modified>2021-11-05T21:22:06.055</Modified>
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\AlgoUWP.xr.xml">
+      <PackagePath>AlgoUWP.xr.xml</PackagePath>
+      <Modified>2021-11-13T18:24:49.590</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-11-07T17:06:59.838</Modified>
+      <Modified>2021-11-14T01:26:04.160</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2021-11-07T17:06:59.838</Modified>
+      <Modified>2021-11-14T01:26:04.159</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -208,13 +104,13 @@
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2020-12-02T08:52:06.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2021-11-07T17:07:00.447</Modified>
+      <Modified>2021-11-12T21:49:07.279</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\Algo\bin\x64\Debug\Core\Algo.exe">
-      <PackagePath>Algo.exe</PackagePath>
-      <Modified>2021-11-07T17:07:01.382</Modified>
+    <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\Core\AlgoUWP.exe">
+      <PackagePath>AlgoUWP.exe</PackagePath>
+      <Modified>2021-11-14T01:26:07.449</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>
@@ -267,57 +163,57 @@
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\CDog2\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
-      <Version>2.2.30527.2</Version>
+      <Version>2.2.29713.2</Version>
       <Architecture>x86</Architecture>
-      <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.30527.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\CDog2\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.29713.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\CDog2\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
-      <Version>2.2.30527.2</Version>
+      <Version>2.2.29713.2</Version>
       <Architecture>x64</Architecture>
-      <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.30527.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\CDog2\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.29713.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\CDog2\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
-      <Version>2.2.30527.2</Version>
+      <Version>2.2.29713.2</Version>
       <Architecture>arm</Architecture>
-      <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.30527.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\CDog2\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.29713.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\CDog2\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
-      <Version>2.2.30316.1</Version>
+      <Version>2.2.29301.2</Version>
       <Architecture>x86</Architecture>
-      <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.30316.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\CDog2\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.29301.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\CDog2\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
-      <Version>2.2.30316.1</Version>
+      <Version>2.2.29301.2</Version>
       <Architecture>x64</Architecture>
-      <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.30316.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\CDog2\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.29301.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Users\CDog2\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
-      <Version>2.2.30316.1</Version>
+      <Version>2.2.29301.2</Version>
       <Architecture>arm</Architecture>
-      <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.30316.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Users\CDog2\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.29301.2, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.12\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>

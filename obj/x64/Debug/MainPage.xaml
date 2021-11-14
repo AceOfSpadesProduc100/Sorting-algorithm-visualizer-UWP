@@ -18,21 +18,37 @@
         </Canvas>
         <Button x:ConnectionId='3' x:Name="visualizeBtn" Content="Visualize" Height="131" Margin="0,0,7,140" VerticalAlignment="Bottom"                         Foreground="White" Background="#FF686868" BorderBrush="{x:Null}" FontWeight="Bold" FontSize="36" HorizontalAlignment="Right" Width="456"/>
         <Button x:ConnectionId='4' x:Name="shuffleBtn" Content="Shuffle" Height="68" Margin="0,0,585,161" VerticalAlignment="Bottom"                          Foreground="White" Background="#FF686868" BorderBrush="{x:Null}" FontWeight="Bold" FontSize="24" Width="200" HorizontalAlignment="Right"/>
-        <ComboBox x:ConnectionId='5' x:Name="comboBox" Margin="6,0,0,187" Width="260" Height="83" FontSize="24" SelectedIndex="0" Header="Algorithm:" VerticalAlignment="Bottom">
-            <ComboBoxItem>0: Merge sort</ComboBoxItem>
-            <ComboBoxItem>1: Insertion sort</ComboBoxItem>
-            <ComboBoxItem>2: Left/left quick sort</ComboBoxItem>
-            <ComboBoxItem>3: Left/right quick sort</ComboBoxItem>
-            <ComboBoxItem>4: Bubble sort</ComboBoxItem>
-            <ComboBoxItem>5: Selection sort</ComboBoxItem>
-            <ComboBoxItem>6: Max heap sort</ComboBoxItem>
-            <ComboBoxItem>7: Odd-even sort</ComboBoxItem>
-            <ComboBoxItem>8: LSD radix sort</ComboBoxItem>
-            <ComboBoxItem>9: Shell sort</ComboBoxItem>
-            <ComboBoxItem>10: Move to back sort</ComboBoxItem>
-            <ComboBoxItem>11: Weird insertion sort</ComboBoxItem>
-            <ComboBoxItem>12: Grail sort</ComboBoxItem>
-        </ComboBox>
+        <Button x:ConnectionId='5' x:Name="comboBox" Margin="16,0,0,187" Width="260" Height="45" FontSize="24" VerticalAlignment="Bottom" Content="Merge sort">
+            <Button.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutSubItem Text="Distributive sorts">
+                        <MenuFlyoutItem x:ConnectionId='27' Text="LSD radix sort"                             />
+                    </MenuFlyoutSubItem>
+                    <MenuFlyoutSubItem Text="Exchange sorts">
+                        <MenuFlyoutItem x:ConnectionId='22' Text="Left/left quick sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='23' Text="Bubble sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='24' Text="Odd-even sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='25' Text="Move to back sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='26' Text="Weird insertion sort"                             />
+                    </MenuFlyoutSubItem>
+                    <MenuFlyoutSubItem Text="Insertion sorts">
+                        <MenuFlyoutItem x:ConnectionId='20' Text="Insertion sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='21' Text="Shell sort"                             />
+                    </MenuFlyoutSubItem>
+                    <MenuFlyoutSubItem Text="Merge sorts">
+                        <MenuFlyoutItem x:ConnectionId='17' Text="Merge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='18' Text="Grail sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='19' Text="Lazy stable sort"                             />
+                    </MenuFlyoutSubItem>
+                    <MenuFlyoutSubItem Text="Selection sorts">
+                        <MenuFlyoutItem x:ConnectionId='15' Text="Selection sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='16' Text="Max heap sort"                             />
+                    </MenuFlyoutSubItem>
+                </MenuFlyout>
+            </Button.Flyout>
+
+        </Button>
+
         <ComboBox x:ConnectionId='6' x:Name="distribcomboBox" Margin="16,0,0,99" Width="260" Height="83" VerticalAlignment="Bottom" FontSize="24" SelectedIndex="0" Header="Distribution:">
             <ComboBoxItem>0: Linear</ComboBoxItem>
             <ComboBoxItem>1: Few unique</ComboBoxItem>
@@ -114,6 +130,7 @@
         <TextBlock x:ConnectionId='12' x:Name="SwapsText" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Text="Swaps:" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock x:ConnectionId='13' x:Name="ReversalsText" HorizontalAlignment="Left" Margin="10,84,0,0" TextWrapping="Wrap" Text="Reversals:" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock x:ConnectionId='14' x:Name="WritesText" HorizontalAlignment="Left" Margin="10,121,0,0" TextWrapping="Wrap" Text="Writes:" VerticalAlignment="Top" FontSize="24"/>
+
     </Grid>
 </Page>
 

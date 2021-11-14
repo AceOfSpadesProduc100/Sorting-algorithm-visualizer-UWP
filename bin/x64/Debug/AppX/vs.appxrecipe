@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-11-14T14:45:08.598</Modified>
+      <Modified>2021-11-14T19:15:00.020</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\AlgoUWP.exe">
       <PackagePath>entrypoint\AlgoUWP.exe</PackagePath>
-      <Modified>2021-11-14T14:45:06.276</Modified>
+      <Modified>2021-11-14T19:14:58.889</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.12\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -86,15 +86,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\AlgoUWP.xr.xml">
       <PackagePath>AlgoUWP.xr.xml</PackagePath>
-      <Modified>2021-11-13T18:24:49.590</Modified>
+      <Modified>2021-11-14T19:10:40.748</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-11-14T14:45:05.678</Modified>
+      <Modified>2021-11-14T19:14:58.625</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2021-11-14T14:45:05.677</Modified>
+      <Modified>2021-11-14T19:14:58.624</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\X64\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -110,7 +110,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\source\repos\AlgoUWP\bin\x64\Debug\Core\AlgoUWP.exe">
       <PackagePath>AlgoUWP.exe</PackagePath>
-      <Modified>2021-11-14T14:45:08.586</Modified>
+      <Modified>2021-11-14T19:15:00.014</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\CDog2\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
       <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>

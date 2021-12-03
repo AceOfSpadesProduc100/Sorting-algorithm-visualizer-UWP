@@ -21,28 +21,62 @@
         <Button x:ConnectionId='5' x:Name="comboBox" Margin="16,0,0,187" Width="260" Height="45" FontSize="24" VerticalAlignment="Bottom" Content="Merge sort">
             <Button.Flyout>
                 <MenuFlyout>
+                    <MenuFlyoutSubItem Text="Concurrent sorts">
+                    </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Distributive sorts">
-                        <MenuFlyoutItem x:ConnectionId='27' Text="LSD radix sort"                             />
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Exchange sorts">
-                        <MenuFlyoutItem x:ConnectionId='22' Text="Left/left quick sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='23' Text="Bubble sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='24' Text="Odd-even sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='25' Text="Move to back sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='26' Text="Weird insertion sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='36' Text="3-smooth comb (iterative) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='37' Text="3-smooth comb (parallel) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='38' Text="3-smooth comb (recursive) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='39' Text="Bubble sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='40' Text="Circle (iterative) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='41' Text="Circle (recursive) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='42' Text="Cocktail shaker sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='43' Text="Comb sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='44' Text="Gnome sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='45' Text="Intro sort (Array.Sort on C#)"                             />
+                        <MenuFlyoutItem x:ConnectionId='46' Text="Odd-even sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='47' Text="Optimized stooge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='48' Text="Optimized stooge (studio) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='49' Text="Quick (dual-pivot) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='50' Text="Quick (left/left) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='51' Text="Quick (left/left middle pivot) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='52' Text="Quick (left/right) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='53' Text="Quick (left/right parallel) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='54' Text="Quick (stable) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='55' Text="Quick (stable middle pivot) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='56' Text="Quick (stable parallel) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='57' Text="Quick (stackless) sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='58' Text="Weird insertion sort"                             />
+                    </MenuFlyoutSubItem>
+                    <MenuFlyoutSubItem Text="Impractical sorts">
+                        <MenuFlyoutItem x:ConnectionId='25' Text="Bogo sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='26' Text="Bozo sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='27' Text="Cocktail bogo sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='28' Text="Less bogo sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='29' Text="Quad stooge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='30' Text="Silly sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='31' Text="Slow sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='32' Text="Snuffle sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='33' Text="Stable stooge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='34' Text="Stooge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='35' Text="Ternary slow sort"                             />
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Insertion sorts">
-                        <MenuFlyoutItem x:ConnectionId='20' Text="Insertion sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='21' Text="Shell sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='23' Text="Insertion sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='24' Text="Shell sort"                             />
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Merge sorts">
-                        <MenuFlyoutItem x:ConnectionId='17' Text="Merge sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='18' Text="Grail sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='19' Text="Lazy stable sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='19' Text="Binary merge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='20' Text="Grail sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='21' Text="Lazy stable sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='22' Text="Merge sort"                             />
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Selection sorts">
-                        <MenuFlyoutItem x:ConnectionId='15' Text="Selection sort"                             />
                         <MenuFlyoutItem x:ConnectionId='16' Text="Max heap sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='17' Text="Min heap sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='18' Text="Selection sort"                             />
                     </MenuFlyoutSubItem>
                 </MenuFlyout>
             </Button.Flyout>
@@ -123,13 +157,15 @@
         </ComboBox>
         <Slider x:ConnectionId='8' x:Name="speedSlider" Height="75" Margin="0,0,7,39" VerticalAlignment="Bottom" Header="Sorting speed:" Maximum="45" Value="25" SmallChange="1" IsDirectionReversed="True" HorizontalAlignment="Right" Width="456" FontSize="24"/>
         <Button x:ConnectionId='9' x:Name="pauseButton" Content="Pause" Margin="0,0,475,161"                           Background="#FF686868" Foreground="White" BorderBrush="{x:Null}" FontWeight="Bold" HorizontalAlignment="Right" Width="90" Height="71" VerticalAlignment="Bottom" FontSize="18"/>
-        <muxc:NumberBox x:ConnectionId='10' x:Name="ArraySize" Margin="301,0,0,58" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="125" Header="Array size:" Value="200" FontSize="24"/>
+        <muxc:NumberBox x:ConnectionId='10' x:Name="ArraySize" Margin="301,0,0,58" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="125" Header="Array size:" Value="200" FontSize="24"                                      />
+
         <CheckBox Content="Sound" Margin="303,0,0,16" VerticalAlignment="Bottom" FontSize="24"/>
         <Slider HorizontalAlignment="Right" Margin="0,0,520,46" VerticalAlignment="Bottom" Width="166" Header="Sound volume:" Maximum="100" StepFrequency="10" Value="100" FontSize="24"/>
         <TextBlock x:ConnectionId='11' x:Name="CompsText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Comparisons:" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock x:ConnectionId='12' x:Name="SwapsText" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Text="Swaps:" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock x:ConnectionId='13' x:Name="ReversalsText" HorizontalAlignment="Left" Margin="10,84,0,0" TextWrapping="Wrap" Text="Reversals:" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock x:ConnectionId='14' x:Name="WritesText" HorizontalAlignment="Left" Margin="10,121,0,0" TextWrapping="Wrap" Text="Writes:" VerticalAlignment="Top" FontSize="24"/>
+        <muxc:NumberBox x:ConnectionId='15' x:Name="BucketCountBox" Margin="301,0,0,186" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="125" Header="Base:" Value="2" FontSize="24"/>
 
     </Grid>
 </Page>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -32,11 +33,12 @@ namespace AlgoUWP
     {
         void GetBuffer(out byte* buffer, out uint capacity);
     }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     /// 
-    class Subarray
+    internal class Subarray
     {
         public int start;
         public int end;
@@ -46,7 +48,8 @@ namespace AlgoUWP
             this.end = end;
         }
     }
-    class PDQPair
+
+    internal class PDQPair
     {
         public int pivotPosition;
         public bool alreadyPartitioned;
@@ -67,6 +70,21 @@ namespace AlgoUWP
             return alreadyPartitioned;
         }
     }
+
+    public class MatrixShape
+    {
+        public int width, height;
+        public bool unbalanced, insertLast;
+
+        public MatrixShape(int width, int height, bool insertLast)
+        {
+            this.width = width;
+            this.height = height;
+            unbalanced = (width == 1) ^ (height == 1);
+            this.insertLast = unbalanced || insertLast;
+        }
+    }
+
     public sealed partial class MainPage : Page
     {
         //bool for the pause button && extra functionallity
@@ -101,6 +119,8 @@ namespace AlgoUWP
         public long writes;
 
         public long reversals;
+
+        public bool shuffling;
 
         //Audio variables
         private AudioGraph graph;
@@ -206,7 +226,10 @@ namespace AlgoUWP
                     lenB -= lenA;
                 }
 
-                if (lenA <= 1 || lenB <= 1) break;
+                if (lenA <= 1 || lenB <= 1)
+                {
+                    break;
+                }
 
                 while (lenA > lenB)
                 {
@@ -231,8 +254,19 @@ namespace AlgoUWP
             comboBox.Content = b.Text;
         }
 
+        public void ResetDistribution(int index)
+        {
+
+        }
+
+        private void ArraySize_ValueChanged(Microsoft.UI.Xaml.Controls.NumberBox sender, Microsoft.UI.Xaml.Controls.NumberBoxValueChangedEventArgs args)
+        {
+            ResetDistribution(distribcomboBox.SelectedIndex);
+        }
+
         private void ShuffleArray()
         {
+            shuffling = true;
             //create a random starting array, if its not already premade
             if (!isPremade)
             {
@@ -244,6 +278,10 @@ namespace AlgoUWP
                 switch (shufflecomboBox.SelectedIndex)
                 {
                     case 0: //reset
+                        if (timer != null) { timer.Stop(); }
+                        isPaused = false;
+                        selectedHistory = new List<int[]>();
+                        sortHistory = new List<int[]>();
                         int n = arr.Length - 1;
                         double c = 2 * Math.PI / n;
                         arr = new int[(int)ArraySize.Value];
@@ -487,13 +525,21 @@ namespace AlgoUWP
                                 int steppp = Math.Max(1, arr.Length / 256);
                                 int floorLog2 = (int)(Math.Log(arr.Length / steppp) / Math.Log(2));
                                 int lowest;
-                                for (lowest = steppp; 2 * lowest <= arr.Length / 4; lowest *= 2) ;
+                                for (lowest = steppp; 2 * lowest <= arr.Length / 4; lowest *= 2)
+                                {
+                                    ;
+                                }
+
                                 bool[] digits = new bool[floorLog2 + 2];
 
                                 int iii, jj;
                                 for (iii = 0; iii + steppp <= arr.Length; iii += steppp)
                                 {
-                                    for (jj = 0; digits[jj]; jj++) ;
+                                    for (jj = 0; digits[jj]; jj++)
+                                    {
+                                        ;
+                                    }
+
                                     digits[jj] = true;
 
                                     for (int kk = 0; kk < steppp; kk++)
@@ -502,11 +548,19 @@ namespace AlgoUWP
                                         arr[iii + kk] = value;
                                     }
 
-                                    for (int kk = 0; kk < jj; kk++) digits[kk] = false;
+                                    for (int kk = 0; kk < jj; kk++)
+                                    {
+                                        digits[kk] = false;
+                                    }
+
                                     selectedArr = new int[] { iii };
                                 }
 
-                                for (jj = 0; digits[jj]; jj++) ;
+                                for (jj = 0; digits[jj]; jj++)
+                                {
+                                    ;
+                                }
+
                                 digits[jj] = true;
                                 while (iii < arr.Length)
                                 {
@@ -586,7 +640,11 @@ namespace AlgoUWP
                                 for (int i = 2; i < arr.Length; i++)
                                 {
                                     nn[i] = sumDivisors(i);
-                                    if (nn[i] > maxq) maxq = nn[i];
+                                    if (nn[i] > maxq)
+                                    {
+                                        maxq = nn[i];
+                                    }
+
                                     selectedArr = new int[] { i };
                                 }
 
@@ -672,7 +730,6 @@ namespace AlgoUWP
                                 AddHistorySnap();
                                 break;
                         }
-
                         break;
                     case 1: //random
                         for (int i = 0; i < arr.Length; i++)
@@ -686,7 +743,7 @@ namespace AlgoUWP
                         AddHistorySnap();
                         break;
                     case 2: //reversed
-                        Array.Reverse(arr);
+                        Reversal(arr, 0, arr.Length);
                         AddHistorySnap();
                         break;
                     case 3: //slight shuffle
@@ -697,12 +754,12 @@ namespace AlgoUWP
                         AddHistorySnap();
                         break;
                     case 4: //sorted
-                        Array.Sort(arr);
+                        Sort(arr, 0, arr.Length);
                         AddHistorySnap();
                         break;
                     case 5: //reverse sorted
-                        Array.Sort(arr);
-                        Array.Reverse(arr);
+                        Sort(arr, 0, arr.Length);
+                        Reversal(arr, 0, arr.Length);
                         AddHistorySnap();
                         break;
                     case 6: //scrambled tail
@@ -711,9 +768,13 @@ namespace AlgoUWP
                         while (ii < arr.Length)
                         {
                             if (random.NextDouble() < 1 / 7d)
+                            {
                                 Write(aux, k++, arr[ii++]);
+                            }
                             else
+                            {
                                 Write(arr, jk++, arr[ii++]);
+                            }
                         }
                         Array.Copy(aux, 0, arr, jk, k);
                         RandomShuffle(arr, jk, arr.Length);
@@ -725,9 +786,13 @@ namespace AlgoUWP
                         while (il >= 0)
                         {
                             if (random.NextDouble() < 1 / 7d)
+                            {
                                 Write(auxx, kl++, arr[il--]);
+                            }
                             else
+                            {
                                 Write(arr, jl--, arr[il--]);
+                            }
                         }
                         Reversearraycopy(auxx, 0, arr, 0, kl);
                         RandomShuffle(arr, 0, jl);
@@ -749,7 +814,10 @@ namespace AlgoUWP
                     case 9: //noisy
                         int ik, size = Math.Max(4, (int)(Math.Sqrt(arr.Length) / 2));
                         for (ik = 0; ik + size <= arr.Length; ik += random.Next(size - 1) + 1)
+                        {
                             RandomShuffle(arr, ik, ik + size);
+                        }
+
                         RandomShuffle(arr, ik, arr.Length);
                         AddHistorySnap();
                         break;
@@ -768,26 +836,33 @@ namespace AlgoUWP
                         int[] temp = new int[arr.Length];
 
                         for (int jp = 0; jp < count; jp++)
+                        {
                             for (int i = jp; i < arr.Length; i += count)
+                            {
                                 Write(temp, kp++, arr[i]);
+                            }
+                        }
 
                         for (int i = 0; i < arr.Length; i++)
+                        {
                             Write(arr, i, temp[i]);
+                        }
+
                         AddHistorySnap();
                         break;
                     case 12: //Shuffled final merge pass
                         RandomShuffle(arr, 0, arr.Length);
-                        Array.Sort(arr, 0, arr.Length / 2);
-                        Array.Sort(arr, arr.Length / 2, arr.Length);
+                        Sort(arr, 0, arr.Length / 2);
+                        Sort(arr, arr.Length / 2, arr.Length);
                         AddHistorySnap();
                         break;
                     case 13: //shuffled second half
                         RandomShuffle(arr, 0, arr.Length);
-                        Array.Sort(arr, 0, arr.Length / 2);
+                        Sort(arr, 0, arr.Length / 2);
                         AddHistorySnap();
                         break;
                     case 14: //partitioned
-                        Array.Sort(arr, 0, arr.Length);
+                        Sort(arr, 0, arr.Length);
                         RandomShuffle(arr, 0, arr.Length / 2);
                         RandomShuffle(arr, arr.Length / 2, arr.Length);
                         AddHistorySnap();
@@ -799,11 +874,18 @@ namespace AlgoUWP
                         int[] tempp = new int[arr.Length];
 
                         for (int j = 0; j < countt; j++)
+                        {
                             for (int i = j; i < arr.Length; i += countt)
+                            {
                                 Write(tempp, kr++, arr[i]);
+                            }
+                        }
 
                         for (int i = 0; i < arr.Length; i++)
+                        {
                             Write(arr, i, tempp[i]);
+                        }
+
                         AddHistorySnap();
                         break;
                     case 16: //pipe organ
@@ -826,7 +908,7 @@ namespace AlgoUWP
                     case 17: //inverted pipe organ
                         int[] tempe = new int[arr.Length];
 
-                        Array.Reverse(arr, 0, arr.Length - 1);
+                        Reversal (arr, 0, arr.Length - 1);
                         for (int i = 0, j = 0; i < arr.Length; i += 2)
                         {
                             tempe[j++] = arr[i];
@@ -879,7 +961,9 @@ namespace AlgoUWP
                         int[] tempw = new int[mid];
 
                         for (int i = 0; i < mid; i++)
+                        {
                             Write(tempw, i, arr[i]);
+                        }
 
                         for (int i = mid, j = 0; i < currentL; i++, j += 2)
                         {
@@ -893,7 +977,10 @@ namespace AlgoUWP
 
                         void weaveRec(int[] array, int pos, int length, int gap)
                         {
-                            if (length < 2) return;
+                            if (length < 2)
+                            {
+                                return;
+                            }
 
                             int mod2 = length % 2;
                             length -= mod2;
@@ -901,7 +988,9 @@ namespace AlgoUWP
                             int[] temp = new int[mid];
 
                             for (int i = pos, j = 0; i < pos + gap * mid; i += gap, j++)
+                            {
                                 Write(temp, j, array[i]);
+                            }
 
                             for (int i = pos + gap * mid, j = pos, k = 0; i < pos + gap * length; i += gap, j += 2 * gap, k++)
                             {
@@ -918,8 +1007,12 @@ namespace AlgoUWP
                         int a = 0, m = (arr.Length + 1) / 2;
 
                         if (arr.Length % 2 == 0)
-                            while (m < arr.Length) Swap(arr, a++, m++);
-
+                        {
+                            while (m < arr.Length)
+                            {
+                                Swap(arr, a++, m++);
+                            }
+                        }
                         else
                         {
                             int tempf = arr[a];
@@ -933,8 +1026,8 @@ namespace AlgoUWP
                         AddHistorySnap();
                         break;
                     case 23: //half reverse
-                        Array.Reverse(arr, 0, arr.Length - 1);
-                        Array.Reverse(arr, arr.Length / 4, (3 * arr.Length + 3) / 4 - 1);
+                        Reversal(arr, 0, arr.Length - 1);
+                        Reversal(arr, arr.Length / 4, (3 * arr.Length + 3) / 4 - 1);
                         AddHistorySnap();
                         break;
                     case 24: //binary search tree traversal
@@ -986,13 +1079,18 @@ namespace AlgoUWP
                         int[] temp2 = new int[lenn];
                         Array.Copy(arr, temp2, arr.Length);
                         for (ie = 0; ie < arr.Length; ie++)
+                        {
                             Write(arr, tempq[ie], temp2[ie]);
+                        }
+
                         AddHistorySnap();
                         break;
                     case 26: //logarithmic slopes
                         int[] tempg = new int[arr.Length];
                         for (int i = 0; i < arr.Length; i++)
+                        {
                             Write(tempg, i, arr[i]);
+                        }
 
                         Write(arr, 0, 0);
                         for (int i = 1; i < arr.Length; i++)
@@ -1066,12 +1164,18 @@ namespace AlgoUWP
                         RandomShuffle(arr, 0, arr.Length);
 
                         int nw = 1;
-                        for (; nw < arr.Length; nw *= 2) ;
+                        for (; nw < arr.Length; nw *= 2)
+                        {
+                            ;
+                        }
 
                         circleSortRoutine(arr, 0, nw - 1, arr.Length);
                         void circleSortRoutine(int[] array, int lo, int hi, int end)
                         {
-                            if (lo == hi) return;
+                            if (lo == hi)
+                            {
+                                return;
+                            }
 
                             int high = hi;
                             int low = lo;
@@ -1080,14 +1184,19 @@ namespace AlgoUWP
                             while (lo < hi)
                             {
                                 if (hi < end && lo > hi)
+                                {
                                     Swap(array, lo, hi);
+                                }
 
                                 lo++;
                                 hi--;
                             }
 
                             circleSortRoutine(array, low, low + mid, end);
-                            if (low + mid + 1 < end) circleSortRoutine(array, low + mid + 1, high, end);
+                            if (low + mid + 1 < end)
+                            {
+                                circleSortRoutine(array, low + mid + 1, high, end);
+                            }
                         }
                         AddHistorySnap();
                         break;
@@ -1096,8 +1205,12 @@ namespace AlgoUWP
 
                         //create pairs
                         for (int i = 1; i < arr.Length; i += 2)
+                        {
                             if (CompareValues(i - 1, i) > 0)
+                            {
                                 Swap(arr, i - 1, i);
+                            }
+                        }
 
                         int[] temps = new int[arr.Length];
 
@@ -1105,13 +1218,22 @@ namespace AlgoUWP
                         for (int mq = 0; mq < 2; mq++)
                         {
                             for (int kd = mq; kd < arr.Length; kd += 2)
+                            {
                                 Write(temps, arr[kd], temps[arr[kd]] + 1);
+                            }
 
                             int i = 0, j = mq;
                             while (true)
                             {
-                                while (i < arr.Length && temps[i] == 0) i++;
-                                if (i >= arr.Length) break;
+                                while (i < arr.Length && temps[i] == 0)
+                                {
+                                    i++;
+                                }
+
+                                if (i >= arr.Length)
+                                {
+                                    break;
+                                }
 
                                 Write(arr, j, i);
 
@@ -1125,9 +1247,12 @@ namespace AlgoUWP
                         reversalRec(arr, 0, arr.Length);
                         void reversalRec(int[] array, int a, int b)
                         {
-                            if (b - a < 2) return;
+                            if (b - a < 2)
+                            {
+                                return;
+                            }
 
-                            Array.Reverse(array, a, b - 1);
+                            Reversal(array, a, b - 1);
 
                             int m = (a + b) / 2;
                             reversalRec(array, a, m);
@@ -1139,12 +1264,21 @@ namespace AlgoUWP
                         reversalRec2(arr, 0, arr.Length, false);
                         void reversalRec2(int[] array, int a, int b, bool bw)
                         {
-                            if (b - a < 3) return;
+                            if (b - a < 3)
+                            {
+                                return;
+                            }
 
                             int m = (a + b) / 2;
 
-                            if (bw) Array.Reverse(array, a, m - 1);
-                            else Array.Reverse(array, m, b - 1);
+                            if (bw)
+                            {
+                                Reversal(array, a, m - 1);
+                            }
+                            else
+                            {
+                                Reversal(array, m, b - 1);
+                            }
 
                             reversalRec2(array, a, m, false);
                             reversalRec2(array, m, b, true);
@@ -1158,11 +1292,17 @@ namespace AlgoUWP
                         int[] temph = new int[arr.Length];
                         Array.Copy(arr, temph, arr.Length);
                         for (int i = 0; i < arr.Length; i++)
+                        {
                             Write(arr, i, temph[triangle[i]]);
+                        }
 
                         void triangleRec(int[] array, int a, int b)
                         {
-                            if (b - a < 2) return;
+                            if (b - a < 2)
+                            {
+                                return;
+                            }
+
                             if (b - a == 2)
                             {
                                 array[a + 1]++;
@@ -1170,8 +1310,15 @@ namespace AlgoUWP
                             }
 
                             int h = (b - a) / 3, t1 = (a + a + b) / 3, t2 = (a + b + b + 2) / 3;
-                            for (int i = a; i < t1; i++) array[i] += h;
-                            for (int i = t1; i < t2; i++) array[i] += 2 * h;
+                            for (int i = a; i < t1; i++)
+                            {
+                                array[i] += h;
+                            }
+
+                            for (int i = t1; i < t2; i++)
+                            {
+                                array[i] += 2 * h;
+                            }
 
                             triangleRec(array, a, t1);
                             triangleRec(array, t1, t2);
@@ -1193,68 +1340,99 @@ namespace AlgoUWP
                                 kq *= 2;
                             }
                             triangleq[i] = triangleq[jq] + 1;
-                            if (triangleq[i] > max) max = triangleq[i];
+                            if (triangleq[i] > max)
+                            {
+                                max = triangleq[i];
+                            }
                         }
                         int[] cnt = new int[max + 1];
 
                         for (int i = 0; i < arr.Length; i++)
+                        {
                             cnt[triangleq[i]]++;
+                        }
 
                         for (int i = 1; i < cnt.Length; i++)
+                        {
                             cnt[i] += cnt[i - 1];
+                        }
 
                         for (int i = arr.Length - 1; i >= 0; i--)
+                        {
                             triangleq[i] = --cnt[triangleq[i]];
+                        }
 
                         int[] tempc = new int[arr.Length];
                         Array.Copy(arr, tempc, arr.Length);
                         for (int i = 0; i < arr.Length; i++)
+                        {
                             Write(arr, i, tempc[triangleq[i]]);
+                        }
+
                         AddHistorySnap();
                         break;
                     case 38: //quicksort adversary
                         for (int j = arr.Length - arr.Length % 2 - 2, i = j - 1; i >= 0; i -= 2, j--)
+                        {
                             Swap(arr, i, j);
+                        }
+
                         AddHistorySnap();
                         break;
                     case 39: //pdq adversary
-                        
+
                         break;
                     case 40: //grailsort adversary
-                        if (arr.Length <= 16) Array.Reverse(arr, 0, arr.Length - 1);
+                        if (arr.Length <= 16)
+                        {
+                            Reversal(arr, 0, arr.Length - 1);
+                        }
                         else
                         {
                             int blockLen = 1;
-                            while (blockLen * blockLen < arr.Length) blockLen *= 2;
+                            while (blockLen * blockLen < arr.Length)
+                            {
+                                blockLen *= 2;
+                            }
 
                             int numKeys = (arr.Length - 1) / blockLen + 1;
                             int keys = blockLen + numKeys;
 
                             RandomShuffle(arr, 0, arr.Length);
-                            Array.Sort(arr, 0, keys);
-                            Array.Reverse(arr, 0, keys - 1);
-                            Array.Sort(arr, keys, arr.Length);
+                            Sort(arr, 0, keys);
+                            Reversal(arr, 0, keys - 1);
+                            Sort(arr, keys, arr.Length);
 
                             push(arr, keys, arr.Length, blockLen);
                         }
                         void rotate(int[] array, int a, int m, int b)
                         {
-                            Array.Reverse(array, a, m - 1);
-                            Array.Reverse(array, m, b - 1);
-                            Array.Reverse(array, a, b - 1);
+                            Reversal(array, a, m - 1);
+                            Reversal(array, m, b - 1);
+                            Reversal(array, a, b - 1);
                         }
 
                         void push(int[] array, int a, int b, int bLen)
                         {
                             int len = b - a,
                                 b1 = b - len % bLen, len1 = b1 - a;
-                            if (len1 <= 2 * bLen) return;
+                            if (len1 <= 2 * bLen)
+                            {
+                                return;
+                            }
 
                             int m = bLen;
-                            while (2 * m < len) m *= 2;
+                            while (2 * m < len)
+                            {
+                                m *= 2;
+                            }
+
                             m += a;
 
-                            if (b1 - m < bLen) push(array, a, m, bLen);
+                            if (b1 - m < bLen)
+                            {
+                                push(array, a, m, bLen);
+                            }
                             else
                             {
                                 m = a + b1 - m;
@@ -1304,8 +1482,14 @@ namespace AlgoUWP
                         {
                             if ((b - a) % 2 == 1)
                             {
-                                if (m - a > b - m) a++;
-                                else b--;
+                                if (m - a > b - m)
+                                {
+                                    a++;
+                                }
+                                else
+                                {
+                                    b--;
+                                }
                             }
                             shuffleBad(array, tmp, a, b);
                         }
@@ -1313,7 +1497,10 @@ namespace AlgoUWP
                         //length is always even
                         void shuffleBad(int[] array, int[] tmp, int a, int b)
                         {
-                            if (b - a < 2) return;
+                            if (b - a < 2)
+                            {
+                                return;
+                            }
 
                             int m = (a + b) / 2;
                             int s = (b - a - 1) / 4 + 1;
@@ -1323,9 +1510,14 @@ namespace AlgoUWP
                             int j = a;
 
                             for (int i = a + 1; i < b; i += 2)
+                            {
                                 Write(tmp, j++, array[i]);
+                            }
+
                             for (int i = a; i < b; i += 2)
+                            {
                                 Write(tmp, j++, array[i]);
+                            }
 
                             Array.Copy(tmp, a, array, a, b - a);
                         }
@@ -1337,7 +1529,10 @@ namespace AlgoUWP
 
                         int[] tempb = new int[arr.Length];
                         Array.Copy(arr, tempb, arr.Length);
-                        for (int i = 0; i < leng; i++) arr[i] = i;
+                        for (int i = 0; i < leng; i++)
+                        {
+                            arr[i] = i;
+                        }
 
                         int mb = 0;
                         int d1 = leng >> 1, d2 = d1 + (d1 >> 1);
@@ -1350,32 +1545,50 @@ namespace AlgoUWP
                                 int kb = i, nb = d2;
                                 (kb & 1) == 0;
                                 j -= nb, kb >>= 1, nb >>= 1
-                            ) ;
+                            )
+                            {
+                                ;
+                            }
+
                             mb += j;
-                            if (mb > i) Swap(arr, i, mb);
+                            if (mb > i)
+                            {
+                                Swap(arr, i, mb);
+                            }
                         }
 
                         if (!pow2)
                         {
                             for (int i = leng; i < arr.Length; i++)
+                            {
                                 Write(arr, i, arr[i - leng]);
+                            }
 
                             int[] cntq = new int[leng];
 
                             for (int i = 0; i < arr.Length; i++)
+                            {
                                 cntq[arr[i]]++;
+                            }
 
                             for (int i = 1; i < cntq.Length; i++)
+                            {
                                 cntq[i] += cntq[i - 1];
+                            }
 
                             for (int i = arr.Length - 1; i >= 0; i--)
+                            {
                                 Write(arr, i, --cntq[arr[i]]);
+                            }
                         }
                         int[] bits = new int[arr.Length];
                         Array.Copy(arr, bits, arr.Length);
 
                         for (int i = 0; i < arr.Length; i++)
+                        {
                             Write(arr, i, tempb[bits[i]]);
+                        }
+
                         AddHistorySnap();
                         break;
                     case 43: //block random
@@ -1398,7 +1611,11 @@ namespace AlgoUWP
                         int pow2lte(int value)
                         {
                             int val;
-                            for (val = 1; val <= value; val <<= 1) ;
+                            for (val = 1; val <= value; val <<= 1)
+                            {
+                                ;
+                            }
+
                             return val >> 1;
                         }
                         AddHistorySnap();
@@ -1426,7 +1643,11 @@ namespace AlgoUWP
                         int pow2lte2(int value)
                         {
                             int val;
-                            for (val = 1; val <= value; val <<= 1) ;
+                            for (val = 1; val <= value; val <<= 1)
+                            {
+                                ;
+                            }
+
                             return val >> 1;
                         }
                         AddHistorySnap();
@@ -1439,6 +1660,7 @@ namespace AlgoUWP
                 DrawHistory();
             }
             isPremade = false;
+            shuffling = false;
 
         }
 
@@ -1446,8 +1668,40 @@ namespace AlgoUWP
         public int PdqLog(int n)
         {
             int log = 0;
-            while ((n >>= 1) != 0) ++log;
+            while ((n >>= 1) != 0)
+            {
+                ++log;
+            }
+
             return log;
+        }
+
+        public void Sort(int[] array, int start, int end)
+        {
+            int min = array[start], max = min;
+            for (int i = start + 1; i < end; i++)
+            {
+                if (array[i] < min) min = array[i];
+                else if (array[i] > max) max = array[i];
+            }
+
+            int size = max - min + 1;
+            int[] holes = new int[size];
+
+            for (int i = start; i < end; i++)
+            {
+                Write(holes, array[i] - min, holes[array[i] - min] + 1);
+            }
+
+            for (int i = 0, j = start; i < size; i++)
+            {
+                while (holes[i] > 0)
+                {
+                    Write(holes, i, holes[i] - 1);
+                    Write(array, j, i + min);
+                    j++;
+                }
+            }
         }
 
         public void MultiSwap(int[] array, int pos, int to)
@@ -1491,27 +1745,27 @@ namespace AlgoUWP
             switch (comboBox.Content)
             {
                 case "Merge sort":
-                    MergeSort(0, arr.Length);
+                    MergeSort(arr, arr.Length, false);
                     DrawHistory();
                     break;
                 case "Insertion sort":
-                    InsertionSort();
+                    InsertionSort(arr, 0, arr.Length);
                     DrawHistory();
                     break;
-                case "Left/left quick sort":
-                    QuickSort(0, arr.Length);
+                case "Quick (left/left) sort":
+                    QuickSortLL(arr, 0, arr.Length - 1);
                     DrawHistory();
                     break;
                 case "Bubble sort":
-                    BubbleSort();
+                    BubbleSort(arr, arr.Length);
                     DrawHistory();
                     break;
                 case "Selection sort":
-                    SelectionSort();
+                    SelectionSort(arr, arr.Length);
                     DrawHistory();
                     break;
                 case "Max heap sort":
-                    HeapSort();
+                    HeapSort(arr, 0, arr.Length, true);
                     DrawHistory();
                     break;
                 case "Odd-even sort":
@@ -1523,10 +1777,14 @@ namespace AlgoUWP
                     DrawHistory();
                     break;
                 case "Shell sort":
-                    ShellSort(arr);
+                    ShellSort(arr, arr.Length);
                     DrawHistory();
                     break;
-                case "Move to back sort": 
+                case "Cocktail shaker sort":
+                    CocktailShakerSort(arr, arr.Length);
+                    DrawHistory();
+                    break;
+                case "Move to back sort":
                     MoveToBackSort();
                     DrawHistory();
                     break;
@@ -1540,6 +1798,10 @@ namespace AlgoUWP
                     break;
                 case "Lazy stable sort":
                     GrailLazyStableSort(arr, 0, arr.Length);
+                    DrawHistory();
+                    break;
+                case "Intro sort (Array.Sort on C#)":
+                    IntroSortCS(arr, 0, arr.Length);
                     DrawHistory();
                     break;
                 default:
@@ -1699,6 +1961,8 @@ namespace AlgoUWP
             int temp = array[a];
             array[a] = array[b];
             array[b] = temp;
+            selectedArr = new int[] { a, b };
+            AddHistorySnap();
             UpdateSwap();
         }
 
@@ -1707,15 +1971,44 @@ namespace AlgoUWP
             array[at] = equals;
             writes++;
             WritesText.Text = "Writes: " + writes;
+            selectedArr = new int[] { at, equals };
+            AddHistorySnap();
         }
 
         public int CompareValues(int left, int right)
         {
             comparisons++;
             CompsText.Text = "Comparisons: " + comparisons;
-            if (left > right) return 1;
-            else if (left < right) return -1;
-            else return 0;
+            //selectedArr = new int[] { arr[left], arr[right] };
+            AddHistorySnap();
+            if (left > right)
+            {
+                return 1;
+            }
+            else if (left < right)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int CompareIndices(int[] array, int left, int right)
+        {
+            return CompareValues(array[left], array[right]);
+        }
+
+        public void Reversal(int[] array, int start, int length)
+        {
+            reversals++;
+            ReversalsText.Text = "Reversals: " + reversals;
+
+            for (int i = start; i < start + ((length - start + 1) / 2); i++)
+            {
+                Swap(array, i, start + length - i);
+            }
         }
 
         // Taken from https://en.wikipedia.org/wiki/Gnome_sort
@@ -1739,322 +2032,324 @@ namespace AlgoUWP
                 SmartGnomeSort(array, low, i);
             }
         }
-
-        public int[] MergeSort(int startI, int endI)
+        private long allocAmount;
+        public int[] CreateExternalArray(int length)
         {
-            int length = endI - startI;
-            if (length == 1)
-            {
-                arrAccesses++;
-                return new int[] { arr[startI] };
-            }
-            int[] A = MergeSort(startI, startI + length / 2);
-            int[] B = MergeSort(startI + length / 2, endI);
-            int[] AB = new int[A.Length + B.Length];
-            int iA = 0;
-            int iB = 0;
-
-            for (int i = 0; i < AB.Length; i++)
-            {
-
-                arrAccesses += 4;
-                if (iB < B.Length && (iA == A.Length || B[iB] < A[iA]))
-                {
-                    AB[i] = B[iB];
-                    arr[startI + i] = B[iB];
-                    iB++;
-                }
-                else
-                {
-                    AB[i] = A[iA];
-                    arr[startI + i] = A[iA];
-                    iA++;
-                }
-                selectedArr = new int[] { startI + i };
-                AddHistorySnap();
-            }
-
-            return AB;
+            allocAmount += length;
+            int[] result = new int[length];
+            return result;
         }
 
-        private void InsertionSort()
+        public void DeleteExternalArray(int[] array)
         {
-            for (int i = 1; i < arr.Length; i++)
+            allocAmount -= array.Length;
+        }
+
+        public void ChangeReversals(int value)
+        {
+            reversals += value;
+        }
+
+        public void ChangeAllocAmount(int value)
+        {
+            allocAmount += value;
+        }
+
+        public void ClearAllocAmount()
+        {
+            allocAmount = 0;
+        }
+
+        public void VisualClear(int[] array, int index)
+        {
+            array[index] = -1;
+        }
+
+        //sorts----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        public void CustomBinaryInsert(int[] array, int start, int end)
+        {
+            BinaryInsertSort(array, start, end);
+        }
+
+        private void BinaryInsertSort(int[] array, int start, int end)
+        {
+            for (int i = start; i < end; i++)
             {
-                int curr = i;
-                while (curr - 1 >= 0 && arr[curr - 1] > arr[curr])
-                {
-                    arrAccesses += 6;
+                int num = array[i];
+                int lo = start, hi = i;
 
-                    comparisons += 2;
-                    int oldIValue = arr[curr];
-                    arr[curr] = arr[curr - 1];
-                    arr[curr - 1] = oldIValue;
-                    curr--;
+                while (lo < hi)
+                {
+                    int mid = lo + ((hi - lo) / 2); // avoid int overflow!
+
+                    if (CompareValues(num, array[mid]) < 0)
+                    { // do NOT move equal elements to right of inserted element; this maintains stability!
+                        hi = mid;
+                    }
+                    else
+                    {
+                        lo = mid + 1;
+                    }
                 }
 
-                comparisons++;
-                if (curr - 1 >= 0)
-                {
-                    comparisons++;
-                }
+                // item has to go into position lo
 
-                selectedArr = new int[] { curr };
-                AddHistorySnap();
+                int j = i - 1;
+
+                while (j >= lo)
+                {
+                    Write(array, j + 1, array[j]);
+                    j--;
+                }
+                Write(array, lo, num);
             }
         }
 
-        private void QuickSort(int startI, int endI)
+        private void Merge(int[] array, int[] tmp, int start, int mid, int end, bool binary)
         {
-            comparisons++;
-            if (endI - startI < 1)
+            if (start == mid)
             {
                 return;
             }
 
-            int pI = endI - 1;
+            Merge(array, tmp, start, (mid + start) / 2, mid, binary);
+            Merge(array, tmp, mid, (mid + end) / 2, end, binary);
 
-            int i = startI;
-            int j = startI;
-
-            while (j < endI - 1)
+            if (end - start < 32 && binary)
             {
-                comparisons++;
-                arrAccesses += 2;
-                if (arr[j] <= arr[pI])
-                {
-                    comparisons++;
-                    arrAccesses += 4;
-                    int oldJ = arr[j];
-                    arr[j] = arr[i];
-                    arr[i] = oldJ;
-                    i++;
-                    selectedArr = new int[] { j, i };
-                    AddHistorySnap();
-                }
-                j++;
+                return;
             }
-            comparisons++;
-
-            int oldI = arr[i];
-            arr[i] = arr[pI];
-            arr[pI] = oldI;
-            pI = i;
-            arrAccesses += 4;
-
-            selectedArr = new int[] { pI, i };
-            AddHistorySnap();
-
-            QuickSort(startI, pI);
-            QuickSort(pI + 1, endI);
-        }
-
-        // Thanks to Timo Bingmann for providing a good reference for Quick Sort w/ LR pointers.
-        private void LRQuickSort(int[] a, int p, int r)
-        {
-            int pivot = p + (r - p + 1) / 2;
-            int x = a[pivot];
-
-            int i = p;
-            int j = r;
-
-            while (i <= j)
+            else if (end - start < 64 && binary)
             {
-                while (a[i] < x)
-                {
-                    i++;
-                    selectedArr = new int[] { i };
-                    AddHistorySnap();
-                }
-                while (a[j] > x)
-                {
-                    j--;
-                    selectedArr = new int[] { j };
-                    AddHistorySnap();
-                }
+                CustomBinaryInsert(array, start, end);
+            }
+            else
+            {
+                int low = start;
+                int high = mid;
 
-                if (i <= j)
+                for (int nxt = 0; nxt < end - start; nxt++)
                 {
-                    // Follow the pivot and highlight it.
-                    if (i == pivot)
+                    if (low >= mid && high >= end)
                     {
-                        selectedArr = new int[] { j };
-                        AddHistorySnap();
-                    }
-                    if (j == pivot)
-                    {
-                        selectedArr = new int[] { i };
-                        AddHistorySnap();
+                        break;
                     }
 
-                    Swap(a, i, j);
-
-                    i++;
-                    j--;
-
-                    i++;
-                    j--;
+                    if (low < mid && high >= end)
+                    {
+                        Write(tmp, nxt, array[low++]);
+                    }
+                    else if (low >= mid && high < end)
+                    {
+                        Write(tmp, nxt, array[high++]);
+                    }
+                    else if (CompareValues(array[low], array[high]) <= 0)
+                    {
+                        Write(tmp, nxt, array[low++]);
+                    }
+                    else
+                    {
+                        Write(tmp, nxt, array[high++]);
+                    }
                 }
-            }
-
-            if (p < j)
-            {
-                LRQuickSort(a, p, j);
-            }
-            if (i < r)
-            {
-                LRQuickSort(a, i, r);
+                for (int i = 0; i < end - start; i++)
+                {
+                    Write(array, start + i, tmp[i]);
+                }
             }
         }
 
-        private void BubbleSort()
+        private void MergeSort(int[] array, int length, bool binary)
         {
-            for (int i = arr.Length; i >= 0; i--)
+
+            if (length < 32 && binary)
             {
-                for (int j = 0; j < i - 1; j++)
+                CustomBinaryInsert(array, 0, length);
+                return;
+            }
+
+            int[] tmp = CreateExternalArray(length);
+
+            int start = 0;
+            int end = length;
+            int mid = start + ((end - start) / 2);
+
+            Merge(array, tmp, start, mid, end, binary);
+
+            DeleteExternalArray(tmp);
+        }
+
+        private void InsertionSort(int[] array, int start, int end)
+        {
+            int pos;
+            int current;
+
+            for (int i = start; i < end; i++)
+            {
+                current = array[i];
+                pos = i - 1;
+
+                while (pos >= start && CompareValues(array[pos], current) > 0)
                 {
-                    if (arr[j] > arr[j + 1])
-                    {
-                        int oldJ = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = oldJ;
-                        arrAccesses += 6;
-
-                    }
-                    comparisons++;
+                    Write(array, pos + 1, array[pos]);
+                    pos--;
                 }
-                selectedArr = new int[] { i };
-                AddHistorySnap();
-
+                Write(array, pos + 1, current);
             }
         }
 
-        private void SelectionSort()
+        private int PartitionLL(int[] array, int lo, int hi)
         {
-            for (int i = 0; i < arr.Length; i++)
-            {
-                int minI = i;
-                for (int j = i + 1; j < arr.Length; j++)
-                {
-                    if (arr[minI] > arr[j])
-                    {
-                        minI = j;
-                    }
-                    arrAccesses += 2;
-                    comparisons++;
-                }
-                int oldI = arr[i];
-                arr[i] = arr[minI];
-                arr[minI] = oldI;
-                arrAccesses += 4;
-                selectedArr = new int[] { i };
-                AddHistorySnap();
+            int pivot = array[hi];
+            int i = lo;
 
+            for (int j = lo; j < hi; j++)
+            {
+                if (CompareValues(array[j], pivot) < 0)
+                {
+                    Swap(array, i, j);
+                    i++;
+                }
+            }
+            Swap(array, i, hi);
+            return i;
+        }
+
+        private void QuickSortLL(int[] array, int lo, int hi)
+        {
+            if (lo < hi)
+            {
+                int p = PartitionLL(array, lo, hi);
+                QuickSortLL(array, lo, p - 1);
+                QuickSortLL(array, p + 1, hi);
             }
         }
 
-        private void HeapSort()
+
+        private void BubbleSort(int[] array, int length)
         {
-
-            for (int i = arr.Length / 2 - 1; i >= 0; i--)
+            int consecSorted;
+            for (int i = length - 1; i > 0; i -= consecSorted)
             {
-                Heapify(i, arr.Length);
-            }
-
-            for (int i = arr.Length - 1; i >= 0; i--)
-            {
-                int oldI = arr[i];
-                arr[i] = arr[0];
-                arr[0] = oldI;
-                arrAccesses += 4;
-                Heapify(0, i);
-            }
-
-            selectedArr = new int[] { arr.Length - 1 };
-
-            AddHistorySnap();
-
-            void Heapify(int i, int topI)
-            {
-                int maxI = i;
-                int leftChildI = i * 2 + 1;
-                int rightChildI = i * 2 + 2;
-
-                comparisons++;
-                if (leftChildI < topI)
+                consecSorted = 1;
+                for (int j = 0; j < i; j++)
                 {
-                    arrAccesses += 2;
-                    comparisons++;
-                    if (arr[leftChildI] > arr[maxI])
+                    if (CompareIndices(array, j, j + 1) > 0)
                     {
-                        maxI = leftChildI;
+                        Swap(array, j, j + 1);
+                        consecSorted = 1;
+                    }
+                    else
+                    {
+                        consecSorted++;
                     }
                 }
+            }
+        }
 
-                comparisons++;
-                if (rightChildI < topI)
+        private void SelectionSort(int[] array, int length)
+        {
+            for (int i = 0; i < length - 1; i++)
+            {
+                int lowestindex = i;
+
+                for (int j = i + 1; j < length; j++)
                 {
-                    arrAccesses += 2;
-                    comparisons++;
-                    if (arr[rightChildI] > arr[maxI])
+                    if (CompareValues(array[j], array[lowestindex]) == -1)
                     {
-                        maxI = rightChildI;
+                        lowestindex = j;
                     }
                 }
+                Swap(array, i, lowestindex);
+            }
+        }
 
-                comparisons++;
-                if (maxI != i)
+        private void SiftDown(int[] array, int root, int dist, int start, bool isMax)
+        {
+            int compareVal;
+            if (isMax)
+            {
+                compareVal = -1;
+            }
+            else
+            {
+                compareVal = 1;
+            }
+
+            while (root <= dist / 2)
+            {
+                int leaf = 2 * root;
+                if (leaf < dist && CompareValues(array[start + leaf - 1], array[start + leaf]) == compareVal)
                 {
-                    int oldI = arr[i];
-                    arr[i] = arr[maxI];
-                    arr[maxI] = oldI;
-
-                    arrAccesses += 4;
-
-                    selectedArr = new int[] { i };
-                    AddHistorySnap();
-                    Heapify(maxI, topI);
+                    leaf++;
                 }
+                if (CompareValues(array[start + root - 1], array[start + leaf - 1]) == compareVal)
+                {
+                    Swap(array, start + root - 1, start + leaf - 1);
+                    root = leaf;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        private void Heapify(int[] arr, int low, int high, bool isMax)
+        {
+            int length = high - low;
+            for (int i = length / 2; i >= 1; i--)
+            {
+                SiftDown(arr, i, length, low, isMax);
+            }
+        }
+
+        // This version of heap sort works for max and min variants, alongside sorting 
+        // partial ranges of an array.
+        private void HeapSort(int[] arr, int start, int length, bool isMax)
+        {
+            Heapify(arr, start, length, isMax);
+
+            for (int i = length - start; i > 1; i--)
+            {
+                Swap(arr, start, start + i - 1);
+                SiftDown(arr, 1, i - 1, start, isMax);
+            }
+
+            if (!isMax)
+            {
+                Reversal(arr, start, start + length - 1);
             }
         }
 
         public void OddEvenSort(int[] array, int length)
         {
-            bool isSorted = false;
+            bool sorted = false;
 
-            while (!isSorted)
+            while (!sorted)
             {
-                isSorted = true;
+                sorted = true;
 
-                //Swap i and i+1 if they are out of order, for i == odd numbers
-                for (int i = 1; i <= length - 2; i += 2)
+                for (int i = 1; i < length - 1; i += 2)
                 {
-                    if (array[i] > array[i + 1])
+                    if (CompareValues(array[i], array[i + 1]) == 1)
                     {
-                        int temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
-                        isSorted = false;
+                        Swap(array, i, i + 1);
+                        sorted = false;
                     }
-                    selectedArr = new int[] { i };
-                    AddHistorySnap();
                 }
 
-                //Swap i and i+1 if they are out of order, for i == even numbers
-                for (int i = 0; i <= length - 2; i += 2)
+                for (int i = 0; i < length - 1; i += 2)
                 {
-                    if (array[i] > array[i + 1])
+                    if (CompareValues(array[i], array[i + 1]) == 1)
                     {
-                        int temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
-                        isSorted = false;
+                        Swap(array, i, i + 1);
+                        sorted = false;
                     }
-                    selectedArr = new int[] { i };
-                    AddHistorySnap();
                 }
             }
-            return;
         }
 
         public int[] RadixSort(int[] array)
@@ -2078,6 +2373,7 @@ namespace AlgoUWP
                     }
 
                     buckets[bucketNumber].Enqueue(value);
+                    writes++;
                     selectedArr = new int[] { value };
                     AddHistorySnap();
                 }
@@ -2089,6 +2385,7 @@ namespace AlgoUWP
                     {
                         array[i] = bucket.Dequeue();
                         i++;
+                        writes++;
                         selectedArr = new int[] { i };
                         AddHistorySnap();
                     }
@@ -2113,44 +2410,105 @@ namespace AlgoUWP
             {
                 Queue<int> q = new();
                 buckets.Add(q);
+                writes++;
                 selectedArr = new int[] { i };
                 AddHistorySnap();
             }
         }
-
-        private int ShellSort(int[] array)
+        private readonly int[] OriginalGaps = { 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 };
+        private readonly int[] PowTwoPlusOneGaps = { 2049, 1025, 513, 257, 129, 65, 33, 17, 9, 5, 3, 1 };
+        private readonly int[] PowTwoMinusOneGaps = { 4095, 2047, 1023, 511, 255, 127, 63, 31, 15, 7, 3, 1 };
+        private readonly int[] ThreeSmoothGaps = {3888, 3456, 3072, 2916, 2592, 2304, 2187, 2048, 1944, 1728,
+                                                  1536, 1458, 1296, 1152, 1024, 972, 864, 768, 729, 648, 576,
+                                                  512, 486, 432, 384, 324, 288, 256, 243, 216, 192, 162, 144,
+                                                  128, 108, 96, 81, 72, 64, 54, 48, 36, 32, 27, 24, 18, 16, 12,
+                                                  9, 8, 6, 4, 3, 2, 1};
+        private readonly int[] PowersOfThreeGaps = { 3280, 1093, 364, 121, 40, 13, 4, 1 };
+        private readonly int[] SedgewickIncerpiGaps = { 1968, 861, 336, 112, 48, 21, 7, 3, 1 };
+        private readonly int[] SedgewickGaps = { 1073, 281, 77, 23, 8, 1 };
+        private readonly int[] OddEvenSedgewickGaps = { 3905, 2161, 929, 505, 209, 109, 41, 19, 5, 1 };
+        private readonly int[] GonnetBaezaYatesGaps = { 1861, 846, 384, 174, 79, 36, 16, 7, 3, 1 };
+        private readonly int[] TokudaGaps = { 2660, 1182, 525, 233, 103, 46, 20, 9, 4, 1 };
+        private readonly int[] CiuraGaps = { 1750, 701, 301, 132, 57, 23, 10, 4, 1 };
+        private readonly int[] ExtendedCiuraGaps = { 8861, 3938, 1750, 701, 301, 132, 57, 23, 10, 4, 1 };
+        private void ShellSort(int[] array, int length)
         {
-            int length = array.Length;
+            int[] incs = ExtendedCiuraGaps;
 
-            for (int h = length / 2; h > 0; h /= 2)
+            for (int k = 0; k < incs.Length; k++)
             {
-                for (int i = h; i < length; i += 1)
+                if (incs == PowersOfThreeGaps)
                 {
-
-                    int temp = array[i];
-
-                    int j;
-                    for (j = i; j >= h && array[j - h] > temp; j -= h)
+                    if (incs[k] < length / 3)
                     {
-                        array[j] = array[j - h];
-                        selectedArr = new int[] { j, h };
-                        AddHistorySnap();
-                    }
+                        for (int h = incs[k], i = h; i < length; i++)
+                        {
 
-                    array[j] = temp;
-                    selectedArr = new int[] { i, j };
-                    AddHistorySnap();
+                            int v = array[i];
+                            int j = i;
+
+                            while (j >= h && CompareValues(array[j - h], v) == 1)
+                            {
+                                Write(array, j, array[j - h]);
+                                j -= h;
+                            }
+                            Write(array, j, v);
+                        }
+                    }
                 }
-                selectedArr = new int[] { h };
-                AddHistorySnap();
+                else
+                {
+                    if (incs[k] < length)
+                    {
+                        for (int h = incs[k], i = h; i < length; i++)
+                        {
+                            //ArrayVisualizer.setCurrentGap(incs[k]);
+
+                            int v = array[i];
+                            int j = i;
+
+                            while (j >= h && CompareValues(array[j - h], v) == 1)
+                            {
+                                Write(array, j, array[j - h]);
+                                j -= h;
+                            }
+                            Write(array, j, v);
+                        }
+                    }
+                }
             }
-            return 0;
+        }
+
+        private void QuickShellSort(int[] array, int lo, int hi)
+        {
+            int[] incs = { 48, 21, 7, 3, 1 };
+
+            for (int k = 0; k < incs.Length; k++)
+            {
+                for (int h = incs[k], i = h + lo; i < hi; i++)
+                {
+                    int v = array[i];
+                    int j = i;
+
+                    while (j >= h && CompareValues(array[j - h], v) == 1)
+                    {
+
+                        Write(array, j, array[j - h]);
+                        j -= h;
+                    }
+                    Write(array, j, v);
+                }
+            }
         }
 
         private int Cur_List_Ptr = 0;
         public void MoveToBackSort()
         {
-            if (Cur_List_Ptr >= arr.Length - 1) Cur_List_Ptr = 0;
+            if (Cur_List_Ptr >= arr.Length - 1)
+            {
+                Cur_List_Ptr = 0;
+            }
+
             if (arr[Cur_List_Ptr] > arr[Cur_List_Ptr + 1])
             {
                 Turn_Around(Cur_List_Ptr);
@@ -2184,7 +2542,7 @@ namespace AlgoUWP
                     int j = i;
 
                     // Insert MyArray[i] into list 0..i-1 
-                    while (j > 0 && MyArray[j] < MyArray[j - 1])
+                    while (j > 0 && CompareValues(MyArray[j], MyArray[j - 1]) < 0)
                     {
                         // Swap MyArray[j] and MyArray[j-1] 
                         Swap(arr, i, j - 1);
@@ -2198,31 +2556,217 @@ namespace AlgoUWP
                 }
             }
         }
-
-
-        private void SwapValues(int i, int v)
+        public void CocktailShakerSort(int[] array, int length)
         {
-            //swap values
-            int temp = arr[i];
-            arr[i] = arr[v];
-            arr[v] = temp;
+            for (int start = 0, end = length - 1; start < end;)
+            {
+                int consecSorted = 1;
+                for (int i = start; i < end; i++)
+                {
+                    if (CompareIndices(array, i, i + 1) > 0)
+                    {
+                        Swap(array, i, i + 1);
+                        consecSorted = 1;
+                    }
+                    else
+                    {
+                        consecSorted++;
+                    }
+                }
+                end -= consecSorted;
 
-            //also swap the brushes
-            AddHistorySnap();
+                consecSorted = 1;
+                for (int i = end; i > start; i--)
+                {
+                    if (CompareIndices(array, i - 1, i) > 0)
+                    {
+                        Swap(array, i - 1, i);
+                        consecSorted = 1;
+                    }
+                    else
+                    {
+                        consecSorted++;
+                    }
+                }
+                start += consecSorted;
+            }
+        }
+        public void IntroSortCS(Array keys, int index, int length)
+        {
+
+            if (length <= 1)
+            {
+                return;
+            }
+
+            SortCS(index, length);
+            return;
+        }
+        public int MaxLength =>
+            // Keep in sync with `inline SIZE_T MaxArrayLength()` from gchelpers and HashHelpers.MaxPrimeArrayLength.
+            0X7FFFFFC7;
+        internal const int IntrosortSizeThreshold = 16;
+
+        internal void SwapIfGreater(int a, int b)
+        {
+            if (a != b)
+            {
+                if (CompareValues(arr[a], arr[b]) > 0)
+                {
+                    Swap(arr, arr[a], arr[b]);
+                }
+            }
+        }
+
+        internal void SortCS(int left, int length)
+        {
+            IntrospectiveSort(left, length);
+        }
+
+        private void IntrospectiveSort(int left, int length)
+        {
+            if (length < 2)
+                return;
+            int logarithm = (int)Math.Log((uint)length, 2);
+            IntroSort(left, length + left - 1, 2 * (logarithm + 1));
+
+        }
+
+        private void IntroSort(int lo, int hi, int depthLimit)
+        {
+            Debug.Assert(hi >= lo);
+            Debug.Assert(depthLimit >= 0);
+
+            while (hi > lo)
+            {
+                int partitionSize = hi - lo + 1;
+                if (partitionSize <= IntrosortSizeThreshold)
+                {
+                    Debug.Assert(partitionSize >= 2);
+
+                    if (partitionSize == 2)
+                    {
+                        SwapIfGreater(lo, hi);
+                        return;
+                    }
+
+                    if (partitionSize == 3)
+                    {
+                        SwapIfGreater(lo, hi - 1);
+                        SwapIfGreater(lo, hi);
+                        SwapIfGreater(hi - 1, hi);
+                        return;
+                    }
+
+                    InsertionSort(lo, hi);
+                    return;
+                }
+
+                if (depthLimit == 0)
+                {
+                    Heapsort(lo, hi);
+                    return;
+                }
+                depthLimit--;
+
+                int p = PickPivotAndPartition(lo, hi);
+                IntroSort(p + 1, hi, depthLimit);
+                hi = p - 1;
+            }
+        }
+
+        private int PickPivotAndPartition(int lo, int hi)
+        {
+            Debug.Assert(hi - lo >= IntrosortSizeThreshold);
+
+            // Compute median-of-three.  But also partition them, since we've done the comparison.
+            int mid = lo + (hi - lo) / 2;
+
+            // Sort lo, mid and hi appropriately, then pick mid as the pivot.
+            SwapIfGreater(lo, mid);
+            SwapIfGreater(lo, hi);
+            SwapIfGreater(mid, hi);
+
+            object pivot = arr[mid];
+            Swap(arr, mid, hi - 1);
+            int left = lo, right = hi - 1;  // We already partitioned lo and hi and put the pivot in hi - 1.  And we pre-increment & decrement below.
+
+            while (left < right)
+            {
+                while (CompareValues(arr[++left], (int)pivot) < 0) ;
+                while (CompareValues((int)pivot, arr[--right]) < 0) ;
+
+                if (left >= right)
+                    break;
+
+                Swap(arr, left, right);
+            }
+
+            // Put pivot in the right location.
+            if (left != hi - 1)
+            {
+                Swap(arr, left, hi - 1);
+            }
+            return left;
+        }
+
+        private void Heapsort(int lo, int hi)
+        {
+            int n = hi - lo + 1;
+            for (int i = n / 2; i >= 1; i--)
+            {
+                DownHeap(i, n, lo);
+            }
+            for (int i = n; i > 1; i--)
+            {
+                Swap(arr, lo, lo + i - 1);
+
+                DownHeap(1, i - 1, lo);
+            }
+        }
+
+        private void DownHeap(int i, int n, int lo)
+        {
+            object d = arr[lo + i - 1];
+            int child;
+            while (i <= n / 2)
+            {
+                child = 2 * i;
+                if (child < n && CompareValues(arr[lo + child - 1], arr[lo + child]) < 0)
+                {
+                    child++;
+                }
+                if (!(CompareValues((int)d, arr[lo + child - 1]) < 0))
+                    break;
+                arr[lo + i - 1] = arr[lo + child - 1];
+                i = child;
+            }
+            arr[lo + i - 1] = (int)d;
+        }
+
+        private void InsertionSort(int lo, int hi)
+        {
+            int i, j;
+            object t;
+            for (i = lo; i < hi; i++)
+            {
+                j = i;
+                t = arr[i + 1];
+                while (j >= lo && CompareValues((int)t, arr[j]) < 0)
+                {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = (int)t;
+            }
         }
 
 
+    //Grailsort-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-
-
-
-        //Grailsort-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-        private readonly int grailStaticBufferLen = 32; //Buffer length changed due to less numbers in this program being sorted than what Mr. Astrelin used for testing.
+    private readonly int grailStaticBufferLen = 32; //Buffer length changed due to less numbers in this program being sorted than what Mr. Astrelin used for testing.
         public int GetStaticBuffer()
         {
             return grailStaticBufferLen;
@@ -2258,8 +2802,6 @@ namespace AlgoUWP
                     GrailMultiSwap(array, pos + (lenA - lenB), pos + lenA, lenB);
                     lenA -= lenB;
                 }
-                selectedArr = new int[] { lenA, lenB, pos };
-                AddHistorySnap();
             }
         }
 
@@ -2292,11 +2834,12 @@ namespace AlgoUWP
                     {
                         right = mid;
                     }
-                    else left = mid;
+                    else
+                    {
+                        left = mid;
+                    }
                 }
             }
-            selectedArr = new int[] { left, right, pos };
-            AddHistorySnap();
             return right;
         }
 
@@ -2322,8 +2865,6 @@ namespace AlgoUWP
                 }
 
                 dist++;
-                selectedArr = new int[] { dist, len, pos };
-                AddHistorySnap();
             }
             GrailRotate(arr, pos, firstKey, foundKeys);
 
@@ -2345,13 +2886,15 @@ namespace AlgoUWP
                         pos += loc;
                         len2 -= loc;
                     }
-                    if (len2 == 0) break;
+                    if (len2 == 0)
+                    {
+                        break;
+                    }
+
                     do
                     {
                         pos++;
                         len1--;
-                        selectedArr = new int[] { pos, len1, len2 };
-                        AddHistorySnap();
                     } while (len1 != 0 && CompareValues(arr[pos], arr[pos + len1]) <= 0);
                 }
             }
@@ -2366,12 +2909,14 @@ namespace AlgoUWP
                         GrailRotate(arr, pos + loc, len1 - loc, len2);
                         len1 = loc;
                     }
-                    if (len1 == 0) break;
+                    if (len1 == 0)
+                    {
+                        break;
+                    }
+
                     do
                     {
                         len2--;
-                        selectedArr = new int[] { pos, len1, len2 };
-                        AddHistorySnap();
                     } while (len2 != 0 && CompareValues(arr[pos + len1 - 1], arr[pos + len1 + len2 - 1]) <= 0);
                 }
             }
@@ -2391,8 +2936,15 @@ namespace AlgoUWP
             if (blockCount == 0)
             {
                 int aBlocksLen = aBlockCount * blockLen;
-                if (havebuf) GrailMergeLeft(arr, pos, aBlocksLen, lastLen, 0 - blockLen);
-                else GrailMergeWithoutBuffer(arr, pos, aBlocksLen, lastLen);
+                if (havebuf)
+                {
+                    GrailMergeLeft(arr, pos, aBlocksLen, lastLen, 0 - blockLen);
+                }
+                else
+                {
+                    GrailMergeWithoutBuffer(arr, pos, aBlocksLen, lastLen);
+                }
+
                 return;
             }
 
@@ -2408,7 +2960,11 @@ namespace AlgoUWP
 
                 if (nextFrag == leftOverFrag)
                 {
-                    if (havebuf) GrailMultiSwap(arr, pos + restToProcess - blockLen, pos + restToProcess, leftOverLen);
+                    if (havebuf)
+                    {
+                        GrailMultiSwap(arr, pos + restToProcess - blockLen, pos + restToProcess, leftOverLen);
+                    }
+
                     leftOverLen = blockLen;
                 }
                 else
@@ -2426,8 +2982,6 @@ namespace AlgoUWP
                         leftOverFrag = results.GetLeftOverFrag();
                     }
                 }
-                selectedArr = new int[] { keyIndex, processIndex };
-                AddHistorySnap();
             }
             restToProcess = processIndex - leftOverLen;
 
@@ -2479,11 +3033,18 @@ namespace AlgoUWP
                 {
                     GrailSwap(arr, pos + (dist++), pos + (right++));
                 }
-                else GrailSwap(arr, pos + (dist++), pos + (left++));
+                else
+                {
+                    GrailSwap(arr, pos + (dist++), pos + (left++));
+                }
+
                 AddHistorySnap();
             }
 
-            if (dist != left) GrailMultiSwap(arr, pos + dist, pos + left, leftLen - left);
+            if (dist != left)
+            {
+                GrailMultiSwap(arr, pos + dist, pos + left, leftLen - left);
+            }
         }
         private void GrailMergeRight(int[] arr, int pos, int leftLen, int rightLen, int dist)
         {
@@ -2497,21 +3058,28 @@ namespace AlgoUWP
                 {
                     GrailSwap(arr, pos + (mergedPos--), pos + (left--));
                 }
-                else GrailSwap(arr, pos + (mergedPos--), pos + (right--));
-                selectedArr = new int[] { pos, dist };
-                AddHistorySnap();
+                else
+                {
+                    GrailSwap(arr, pos + (mergedPos--), pos + (right--));
+                }
             }
 
             if (right != mergedPos)
             {
-                while (right >= leftLen) GrailSwap(arr, pos + (mergedPos--), pos + (right--));
+                while (right >= leftLen)
+                {
+                    GrailSwap(arr, pos + (mergedPos--), pos + (right--));
+                }
             }
         }
 
         //returns the leftover length, then the leftover fragment
         private GrailPair GrailSmartMergeWithoutBuffer(int[] arr, int pos, int leftOverLen, int leftOverFrag, int regBlockLen)
         {
-            if (regBlockLen == 0) return new GrailPair(leftOverLen, leftOverFrag);
+            if (regBlockLen == 0)
+            {
+                return new GrailPair(leftOverLen, leftOverFrag);
+            }
 
             int len1 = leftOverLen;
             int len2 = regBlockLen;
@@ -2547,8 +3115,6 @@ namespace AlgoUWP
                     {
                         pos++;
                         len1--;
-                        selectedArr = new int[] { pos, len1, len2 };
-                        AddHistorySnap();
                     } while (len1 != 0 && CompareValues(arr[pos], arr[pos + len1]) - typeFrag < 0);
                 }
             }
@@ -2567,9 +3133,10 @@ namespace AlgoUWP
                 {
                     GrailSwap(arr, pos + (dist++), pos + (left++));
                 }
-                else GrailSwap(arr, pos + (dist++), pos + (right++));
-                selectedArr = new int[] { pos};
-                AddHistorySnap();
+                else
+                {
+                    GrailSwap(arr, pos + (dist++), pos + (right++));
+                }
             }
 
             int length, fragment = leftOverFrag;
@@ -2579,7 +3146,6 @@ namespace AlgoUWP
                 while (left < leftEnd)
                 {
                     GrailSwap(arr, pos + (--leftEnd), pos + (--rightEnd));
-                    selectedArr = new int[] { pos };
                 }
             }
             else
@@ -2605,9 +3171,10 @@ namespace AlgoUWP
                 {
                     Write(arr, pos + dist++, arr[pos + left++]);
                 }
-                else Write(arr, pos + dist++, arr[pos + right++]);
-                selectedArr = new int[] { pos };
-                AddHistorySnap();
+                else
+                {
+                    Write(arr, pos + dist++, arr[pos + right++]);
+                }
             }
 
             int length, fragment = leftOverFrag;
@@ -2617,7 +3184,6 @@ namespace AlgoUWP
                 while (left < leftEnd)
                 {
                     Write(arr, pos + --rightEnd, arr[pos + --leftEnd]);
-                    AddHistorySnap();
                 }
             }
             else
@@ -2643,9 +3209,10 @@ namespace AlgoUWP
                 {
                     Write(arr, pos + dist++, arr[pos + right++]);
                 }
-                else Write(arr, pos + dist++, arr[pos + left++]);
-                selectedArr = new int[] { pos, leftEnd, rightEnd, dist };
-                AddHistorySnap();
+                else
+                {
+                    Write(arr, pos + dist++, arr[pos + left++]);
+                }
             }
 
             if (dist != left)
@@ -2653,8 +3220,6 @@ namespace AlgoUWP
                 while (left < leftEnd)
                 {
                     Write(arr, pos + dist++, arr[pos + left++]);
-                    selectedArr = new int[] { pos, leftEnd, rightEnd, dist };
-                    AddHistorySnap();
                 }
 
             }
@@ -2698,8 +3263,6 @@ namespace AlgoUWP
                     leftOverLen = results.GetLeftOverLen();
                     leftOverFrag = results.GetLeftOverFrag();
                 }
-                selectedArr = new int[] { keyIndex, processIndex, pos, keysPos };
-                AddHistorySnap();
             }
             restToProcess = processIndex - leftOverLen;
 
@@ -2737,8 +3300,6 @@ namespace AlgoUWP
             while ((buildBuf & (buildBuf - 1)) != 0)
             {
                 buildBuf &= buildBuf - 1;  // max power or 2 - just in case
-                selectedArr = new int[] { pos, bufferPos };
-                AddHistorySnap();
             }
 
             int extraDist, part;
@@ -2749,13 +3310,19 @@ namespace AlgoUWP
                 for (int dist = 1; dist < len; dist += 2)
                 {
                     extraDist = 0;
-                    if (CompareValues(arr[pos + (dist - 1)], arr[pos + dist]) > 0) extraDist = 1;
+                    if (CompareValues(arr[pos + (dist - 1)], arr[pos + dist]) > 0)
+                    {
+                        extraDist = 1;
+                    }
+
                     Write(arr, pos + dist - 3, arr[pos + dist - 1 + extraDist]);
                     Write(arr, pos + dist - 2, arr[pos + dist - extraDist]);
-                    selectedArr = new int[] { dist, pos, bufferPos };
-                    AddHistorySnap();
                 }
-                if (len % 2 != 0) Write(arr, pos + len - 3, arr[pos + len - 1]);
+                if (len % 2 != 0)
+                {
+                    Write(arr, pos + len - 3, arr[pos + len - 1]);
+                }
+
                 pos -= 2;
 
                 for (part = 2; part < buildBuf; part *= 2)
@@ -2775,11 +3342,12 @@ namespace AlgoUWP
                     }
                     else
                     {
-                        for (; left < len; left++) Write(arr, pos + left - part, arr[pos + left]);
+                        for (; left < len; left++)
+                        {
+                            Write(arr, pos + left - part, arr[pos + left]);
+                        }
                     }
                     pos -= part;
-                    selectedArr = new int[] { part, pos, bufferPos };
-                    AddHistorySnap();
                 }
                 Array.Copy(extbuf, bufferPos, arr, pos + len, buildBuf);
             }
@@ -2788,13 +3356,19 @@ namespace AlgoUWP
                 for (int dist = 1; dist < len; dist += 2)
                 {
                     extraDist = 0;
-                    if (CompareValues(arr[pos + (dist - 1)], arr[pos + dist]) > 0) extraDist = 1;
+                    if (CompareValues(arr[pos + (dist - 1)], arr[pos + dist]) > 0)
+                    {
+                        extraDist = 1;
+                    }
+
                     GrailSwap(arr, pos + (dist - 3), pos + (dist - 1 + extraDist));
                     GrailSwap(arr, pos + (dist - 2), pos + (dist - extraDist));
-                    selectedArr = new int[] { dist, pos, bufferPos };
-                    AddHistorySnap();
                 }
-                if (len % 2 != 0) GrailSwap(arr, pos + (len - 1), pos + (len - 3));
+                if (len % 2 != 0)
+                {
+                    GrailSwap(arr, pos + (len - 1), pos + (len - 3));
+                }
+
                 pos -= 2;
                 part = 2;
             }
@@ -2818,21 +3392,23 @@ namespace AlgoUWP
                     GrailRotate(arr, pos + left - part, part, rest);
                 }
                 pos -= part;
-                selectedArr = new int[] { part, pos };
-                AddHistorySnap();
             }
             int restToBuild = len % (2 * buildLen);
             int leftOverPos = len - restToBuild;
 
-            if (restToBuild <= buildLen) GrailRotate(arr, pos + leftOverPos, restToBuild, buildLen);
-            else GrailMergeRight(arr, pos + leftOverPos, buildLen, restToBuild - buildLen, buildLen);
+            if (restToBuild <= buildLen)
+            {
+                GrailRotate(arr, pos + leftOverPos, restToBuild, buildLen);
+            }
+            else
+            {
+                GrailMergeRight(arr, pos + leftOverPos, buildLen, restToBuild - buildLen, buildLen);
+            }
 
             while (leftOverPos > 0)
             {
                 leftOverPos -= 2 * buildLen;
                 GrailMergeRight(arr, pos + leftOverPos, buildLen, buildLen, buildLen);
-                selectedArr = new int[] { pos, bufferPos };
-                AddHistorySnap();
             }
         }
 
@@ -2850,11 +3426,17 @@ namespace AlgoUWP
                 leftOver = 0;
             }
 
-            if (buffer != null) Array.Copy(arr, pos - regBlockLen, buffer, bufferPos, regBlockLen);
+            if (buffer != null)
+            {
+                Array.Copy(arr, pos - regBlockLen, buffer, bufferPos, regBlockLen);
+            }
 
             for (int i = 0; i <= combineLen; i++)
             {
-                if (i == combineLen && leftOver == 0) break;
+                if (i == combineLen && leftOver == 0)
+                {
+                    break;
+                }
 
                 int blockPos = pos + i * 2 * buildLen;
                 int blockCount = (i == combineLen ? leftOver : 2 * buildLen) / regBlockLen;
@@ -2885,13 +3467,14 @@ namespace AlgoUWP
                             midkey ^= (index - 1) ^ leftIndex;
                         }
                     }
-                    selectedArr = new int[] { index, pos };
-                    AddHistorySnap();
                 }
 
                 int aBlockCount = 0;
                 int lastLen = 0;
-                if (i == combineLen) lastLen = leftOver % regBlockLen;
+                if (i == combineLen)
+                {
+                    lastLen = leftOver % regBlockLen;
+                }
 
                 if (lastLen != 0)
                 {
@@ -2899,8 +3482,6 @@ namespace AlgoUWP
                                                                           arr[blockPos + (blockCount - aBlockCount - 1) * regBlockLen]) < 0)
                     {
                         aBlockCount++;
-                        selectedArr = new int[] { pos, bufferPos };
-                        AddHistorySnap();
                     }
                 }
 
@@ -2909,14 +3490,19 @@ namespace AlgoUWP
                     GrailMergeBuffersLeftWithXBuf(arr, keyPos, keyPos + midkey, blockPos,
                             blockCount - aBlockCount, regBlockLen, aBlockCount, lastLen);
                 }
-                else GrailMergeBuffersLeft(arr, keyPos, keyPos + midkey, blockPos,
+                else
+                {
+                    GrailMergeBuffersLeft(arr, keyPos, keyPos + midkey, blockPos,
                         blockCount - aBlockCount, regBlockLen, havebuf, aBlockCount, lastLen);
-                selectedArr = new int[] { i };
-                AddHistorySnap();
+                }
             }
             if (buffer != null)
             {
-                for (int i = len; --i >= 0;) Write(arr, pos + i, arr[pos + i - regBlockLen]);
+                for (int i = len; --i >= 0;)
+                {
+                    Write(arr, pos + i, arr[pos + i - regBlockLen]);
+                }
+
                 Array.Copy(buffer, bufferPos, arr, pos - regBlockLen, regBlockLen);
             }
             else if (havebuf)
@@ -2924,8 +3510,6 @@ namespace AlgoUWP
                 while (--len >= 0)
                 {
                     GrailSwap(arr, pos + len, pos + len - regBlockLen);
-                    selectedArr = new int[] { pos, bufferPos };
-                    AddHistorySnap();
                 }
             }
         }
@@ -2938,8 +3522,6 @@ namespace AlgoUWP
                 {
                     GrailSwap(arr, pos + (dist - 1), pos + dist);
                 }
-                selectedArr = new int[] { dist, pos };
-                AddHistorySnap();
             }
 
             for (int part = 2; part < len; part *= 2)
@@ -2951,8 +3533,6 @@ namespace AlgoUWP
                 {
                     GrailMergeWithoutBuffer(arr, pos + left, part, part);
                     left += 2 * part;
-                    selectedArr = new int[] { pos };
-                    AddHistorySnap();
                 }
 
                 int rest = len - left;
@@ -2960,8 +3540,6 @@ namespace AlgoUWP
                 {
                     GrailMergeWithoutBuffer(arr, pos + left, part, rest - part);
                 }
-                selectedArr = new int[] { part, pos };
-                AddHistorySnap();
             }
         }
 
@@ -2975,7 +3553,10 @@ namespace AlgoUWP
             }
 
             int blockLen = 1;
-            while (blockLen * blockLen < len) blockLen *= 2;
+            while (blockLen * blockLen < len)
+            {
+                blockLen *= 2;
+            }
 
             int numKeys = (len - 1) / blockLen + 1;
 
@@ -2991,7 +3572,11 @@ namespace AlgoUWP
                     return;
                 }
                 numKeys = blockLen;
-                while (numKeys > keysFound) numKeys /= 2;
+                while (numKeys > keysFound)
+                {
+                    numKeys /= 2;
+                }
+
                 bufferEnabled = false;
                 blockLen = 0;
             }
@@ -3035,8 +3620,6 @@ namespace AlgoUWP
                 }
                 GrailCombineBlocks(arr, pos, pos + dist, len - dist, buildLen, regBlockLen, buildBufEnabled,
                         buildBufEnabled && regBlockLen <= bufferLen ? buffer : null, bufferPos);
-                selectedArr = new int[] { dist, pos, bufferPos };
-                AddHistorySnap();
             }
 
             GrailInsertSort(arr, pos, dist);
@@ -3052,8 +3635,14 @@ namespace AlgoUWP
             }
 
             int midpoint;
-            if (len1 < len2) midpoint = len1 + len2 / 2;
-            else midpoint = len1 / 2;
+            if (len1 < len2)
+            {
+                midpoint = len1 + len2 / 2;
+            }
+            else
+            {
+                midpoint = len1 / 2;
+            }
 
             //Left binary search
             int len1Left, len1Right;
@@ -3073,7 +3662,10 @@ namespace AlgoUWP
                 len2Right = GrailBinSearch(arr, pos + len1 + len2Left, len2 - len2Left, pos + midpoint, false) + len2Left;
             }
 
-            if (len1Left == len1Right) GrailRotate(arr, pos + len1Right, len1 - len1Right, len2Right);
+            if (len1Left == len1Right)
+            {
+                GrailRotate(arr, pos + len1Right, len1 - len1Right, len2Right);
+            }
             else
             {
                 GrailRotate(arr, pos + len1Left, len1 - len1Left, len2Left);
@@ -3091,9 +3683,10 @@ namespace AlgoUWP
         {
             for (int dist = start + 1; dist < len; dist += 2)
             {
-                if (CompareValues(arr[dist - 1], arr[dist]) > 0) GrailSwap(arr, dist - 1, dist);
-                selectedArr = new int[] { dist };
-                AddHistorySnap();
+                if (CompareValues(arr[dist - 1], arr[dist]) > 0)
+                {
+                    GrailSwap(arr, dist - 1, dist);
+                }
             }
             for (int part = 2; part < len; part *= 2)
             {
@@ -3103,44 +3696,15 @@ namespace AlgoUWP
                 {
                     GrailInPlaceMerge(arr, left, part, part);
                     left += 2 * part;
-                    selectedArr = new int[] { part };
-                    AddHistorySnap();
                 }
 
                 int rest = len - left;
-                if (rest > part) GrailInPlaceMerge(arr, left, part, rest - part);
+                if (rest > part)
+                {
+                    GrailInPlaceMerge(arr, left, part, rest - part);
+                }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3240,6 +3804,6 @@ namespace AlgoUWP
             }
         }
 
-        
+
     }
 }

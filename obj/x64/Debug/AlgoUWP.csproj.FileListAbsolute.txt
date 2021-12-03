@@ -44,3 +44,4 @@ C:\Users\CDog2\source\repos\AlgoUWP\obj\x64\Debug\qualifiers.txt.intermediate
 C:\Users\CDog2\source\repos\AlgoUWP\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\CDog2\source\repos\AlgoUWP\obj\x64\Debug\ProjectArchitectures.txt
 C:\Users\CDog2\source\repos\AlgoUWP\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637425031200000000.json
+C:\Users\CDog2\source\repos\AlgoUWP\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637669973380000000.json

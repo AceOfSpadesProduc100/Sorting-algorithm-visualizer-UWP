@@ -24,7 +24,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "uap10.0.17763"
+          "uap10.0.19041"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -32,21 +32,29 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "uap10.0.17763": {
+          "uap10.0.19041": {
             "projectReferences": {}
           }
         }
       },
       "frameworks": {
-        "uap10.0.17763": {
+        "uap10.0.19041": {
           "dependencies": {
             "Microsoft.NETCore.UniversalWindowsPlatform": {
               "target": "Package",
-              "version": "[6.2.12, )"
+              "version": "[6.2.13, )"
             },
             "Microsoft.UI.Xaml": {
               "target": "Package",
               "version": "[2.7.0, )"
+            },
+            "System.Numerics.Vectors": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "System.Runtime.Numerics": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [

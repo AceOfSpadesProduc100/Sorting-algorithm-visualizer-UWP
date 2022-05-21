@@ -7,18 +7,24 @@
     mc:Ignorable="d"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                                                               >
+                                    
+                                              
+                        >
 
-    <Grid>
+    <Page.Resources>
+        
+    </Page.Resources>
 
-        <Canvas x:ConnectionId='2' x:Name="canv"                                                                         Background="Transparent" Margin="0,0,-2,280" RenderTransformOrigin="0.5,0.5">
+    <Grid x:ConnectionId='2' x:Name="___No_Name_">
+
+        <Canvas x:ConnectionId='3' x:Name="canv"                                                                         Background="Transparent" Margin="0,0,-2,280" RenderTransformOrigin="0.5,0.5" x:FieldModifier="public">
             <Canvas.RenderTransform>
                 <CompositeTransform ScaleY="-1"/>
             </Canvas.RenderTransform>
         </Canvas>
-        <Button x:ConnectionId='3' x:Name="visualizeBtn" Content="Visualize" Height="131" Margin="0,0,7,140" VerticalAlignment="Bottom"                         Foreground="White" Background="#FF686868" BorderBrush="{x:Null}" FontWeight="Bold" FontSize="36" HorizontalAlignment="Right" Width="456"/>
-        <Button x:ConnectionId='4' x:Name="shuffleBtn" Content="Shuffle" Height="68" Margin="0,0,585,161" VerticalAlignment="Bottom"                          Foreground="White" Background="#FF686868" BorderBrush="{x:Null}" FontWeight="Bold" FontSize="24" Width="200" HorizontalAlignment="Right"/>
-        <Button x:ConnectionId='5' x:Name="comboBox" Margin="16,0,0,187" Width="260" Height="45" FontSize="24" VerticalAlignment="Bottom" Content="Merge sort">
+        <Button x:ConnectionId='4' x:Name="visualizeBtn" Content="Visualize" Height="131" Margin="0,0,7,140" VerticalAlignment="Bottom"                         Foreground="White" Background="#FF686868" BorderBrush="{x:Null}" FontWeight="Bold" FontSize="36" HorizontalAlignment="Right" Width="228"/>
+        <Button x:ConnectionId='5' x:Name="shuffleBtn" Content="Shuffle" Height="68" Margin="0,0,240,203" VerticalAlignment="Bottom"                          Foreground="White" Background="#FF686868" BorderBrush="{x:Null}" FontWeight="Bold" FontSize="24" Width="200" HorizontalAlignment="Right"/>
+        <Button x:ConnectionId='6' x:Name="comboBox" Margin="16,0,0,235" Width="260" Height="45" FontSize="24" VerticalAlignment="Bottom" Content="Merge sort">
             <Button.Flyout>
                 <MenuFlyout>
                     <MenuFlyoutSubItem Text="Concurrent sorts">
@@ -26,146 +32,55 @@
                     <MenuFlyoutSubItem Text="Distributive sorts">
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Exchange sorts">
-                        <MenuFlyoutItem x:ConnectionId='36' Text="3-smooth comb (iterative) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='37' Text="3-smooth comb (parallel) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='38' Text="3-smooth comb (recursive) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='39' Text="Bubble sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='40' Text="Circle (iterative) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='41' Text="Circle (recursive) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='42' Text="Cocktail shaker sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='43' Text="Comb sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='44' Text="Gnome sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='45' Text="Intro sort (Array.Sort on C#)"                             />
-                        <MenuFlyoutItem x:ConnectionId='46' Text="Odd-even sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='47' Text="Optimized stooge sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='48' Text="Optimized stooge (studio) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='49' Text="Quick (dual-pivot) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='50' Text="Quick (left/left) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='51' Text="Quick (left/left middle pivot) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='52' Text="Quick (left/right) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='53' Text="Quick (left/right parallel) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='54' Text="Quick (stable) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='55' Text="Quick (stable middle pivot) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='56' Text="Quick (stable parallel) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='57' Text="Quick (stackless) sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='58' Text="Weird insertion sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='35' Text="Weird insertion sort"                             />
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Impractical sorts">
-                        <MenuFlyoutItem x:ConnectionId='25' Text="Bogo sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='26' Text="Bozo sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='27' Text="Cocktail bogo sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='28' Text="Less bogo sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='29' Text="Quad stooge sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='30' Text="Silly sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='31' Text="Slow sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='32' Text="Snuffle sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='33' Text="Stable stooge sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='34' Text="Stooge sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='35' Text="Ternary slow sort"                             />
+
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Insertion sorts">
-                        <MenuFlyoutItem x:ConnectionId='23' Text="Insertion sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='24' Text="Shell sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='33' Text="Insertion sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='34' Text="Shell sort"                             />
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Merge sorts">
-                        <MenuFlyoutItem x:ConnectionId='19' Text="Binary merge sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='20' Text="Grail sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='21' Text="Lazy stable sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='22' Text="Merge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='29' Text="Binary merge sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='30' Text="Grail sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='31' Text="Lazy stable sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='32' Text="Merge sort"                             />
                     </MenuFlyoutSubItem>
                     <MenuFlyoutSubItem Text="Selection sorts">
-                        <MenuFlyoutItem x:ConnectionId='16' Text="Max heap sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='17' Text="Min heap sort"                             />
-                        <MenuFlyoutItem x:ConnectionId='18' Text="Selection sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='26' Text="Max heap sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='27' Text="Min heap sort"                             />
+                        <MenuFlyoutItem x:ConnectionId='28' Text="Selection sort"                             />
                     </MenuFlyoutSubItem>
                 </MenuFlyout>
             </Button.Flyout>
 
         </Button>
 
-        <ComboBox x:ConnectionId='6' x:Name="distribcomboBox" Margin="16,0,0,99" Width="260" Height="83" VerticalAlignment="Bottom" FontSize="24" SelectedIndex="0" Header="Distribution:">
-            <ComboBoxItem>0: Linear</ComboBoxItem>
-            <ComboBoxItem>1: Few unique</ComboBoxItem>
-            <ComboBoxItem>2: No unique</ComboBoxItem>
-            <ComboBoxItem>3: Noise</ComboBoxItem>
-            <ComboBoxItem>4: Quadratic curve</ComboBoxItem>
-            <ComboBoxItem>5: Square root curve</ComboBoxItem>
-            <ComboBoxItem>6: Cubic curve</ComboBoxItem>
-            <ComboBoxItem>7: Quintic curve</ComboBoxItem>
-            <ComboBoxItem>8: Cube root curve</ComboBoxItem>
-            <ComboBoxItem>9: Fifth root curve</ComboBoxItem>
-            <ComboBoxItem>10: Sine wave</ComboBoxItem>
-            <ComboBoxItem>11: Cosine wave</ComboBoxItem>
-            <ComboBoxItem>12: Tangent wave</ComboBoxItem>
-            <ComboBoxItem>13: Perlin noise</ComboBoxItem>
-            <ComboBoxItem>14: Perlin noise curve</ComboBoxItem>
-            <ComboBoxItem>15: Bell curve</ComboBoxItem>
-            <ComboBoxItem>16: Ruler</ComboBoxItem>
-            <ComboBoxItem>17: Blancmange curve</ComboBoxItem>
-            <ComboBoxItem>18: Cantor function</ComboBoxItem>
-            <ComboBoxItem>19: Sum of divisors</ComboBoxItem>
-            <ComboBoxItem>20: OEIS "fly straight"</ComboBoxItem>
-            <ComboBoxItem>21: Decreasing random</ComboBoxItem>
-            <ComboBoxItem>22: Modulo function</ComboBoxItem>
+        <ComboBox x:ConnectionId='7' x:Name="distribcomboBox" Margin="16,0,0,147" Width="260" Height="83" VerticalAlignment="Bottom" FontSize="24" SelectedIndex="0" Header="Distribution:">
         </ComboBox>
-        <ComboBox x:ConnectionId='7' x:Name="shufflecomboBox" Margin="16,0,0,11" Width="260" Height="83" VerticalAlignment="Bottom" FontSize="24" SelectedIndex="0" Header="Shuffle:">
-            <ComboBoxItem>0: Reset distribution</ComboBoxItem>
-            <ComboBoxItem>1: Random</ComboBoxItem>
-            <ComboBoxItem>2: Reversed</ComboBoxItem>
-            <ComboBoxItem>3: Slight shuffle</ComboBoxItem>
-            <ComboBoxItem>4: Sorted</ComboBoxItem>
-            <ComboBoxItem>5: Reverse sorted</ComboBoxItem>
-            <ComboBoxItem>6: Shuffled tail</ComboBoxItem>
-            <ComboBoxItem>7: Shuffled head</ComboBoxItem>
-            <ComboBoxItem>8: Shifted element</ComboBoxItem>
-            <ComboBoxItem>9: Noisy</ComboBoxItem>
-            <ComboBoxItem>10: Shuffled odds</ComboBoxItem>
-            <ComboBoxItem>11: Final merge pass</ComboBoxItem>
-            <ComboBoxItem>12: Shuffled final merge pass</ComboBoxItem>
-            <ComboBoxItem>13: Shuffled second half</ComboBoxItem>
-            <ComboBoxItem>14: Partitioned</ComboBoxItem>
-            <ComboBoxItem>15: Sawtooth</ComboBoxItem>
-            <ComboBoxItem>16: Pipe organ</ComboBoxItem>
-            <ComboBoxItem>17: Inverted pipe organ</ComboBoxItem>
-            <ComboBoxItem>18: Interlaced</ComboBoxItem>
-            <ComboBoxItem>19: Double layered</ComboBoxItem>
-            <ComboBoxItem>20: Final radix pass</ComboBoxItem>
-            <ComboBoxItem>21: Recursive final radix pass</ComboBoxItem>
-            <ComboBoxItem>22: Half rotation</ComboBoxItem>
-            <ComboBoxItem>23: Half reverse</ComboBoxItem>
-            <ComboBoxItem>24: Binary search tree traversal</ComboBoxItem>
-            <ComboBoxItem>25: Inverted binary search tree</ComboBoxItem>
-            <ComboBoxItem>26: Logarithmic slopes</ComboBoxItem>
-            <ComboBoxItem>27: Max heapified</ComboBoxItem>
-            <ComboBoxItem>28: Min heapified</ComboBoxItem>
-            <ComboBoxItem>29: Smooth heapified</ComboBoxItem>
-            <ComboBoxItem>30: Poplar heapified</ComboBoxItem>
-            <ComboBoxItem>31: Triangular heapified</ComboBoxItem>
-            <ComboBoxItem>32: First circle run</ComboBoxItem>
-            <ComboBoxItem>33: Final pairwise pass</ComboBoxItem>
-            <ComboBoxItem>34: Recursive reversal</ComboBoxItem>
-            <ComboBoxItem>35: Gray code fractal</ComboBoxItem>
-            <ComboBoxItem>36: Sierpinski triangle</ComboBoxItem>
-            <ComboBoxItem>37: Triangular input</ComboBoxItem>
-            <ComboBoxItem>38: Quicksort adversary</ComboBoxItem>
-            <ComboBoxItem>39: PDQsort adversary</ComboBoxItem>
-            <ComboBoxItem>40: Grailsort adversary</ComboBoxItem>
-            <ComboBoxItem>41: Shuffle merge adversary</ComboBoxItem>
-            <ComboBoxItem>42: Bit reversal</ComboBoxItem>
-            <ComboBoxItem>43: Block random</ComboBoxItem>
-            <ComboBoxItem>44: Block reverse</ComboBoxItem>
+        <ComboBox x:ConnectionId='8' x:Name="shufflecomboBox" Margin="16,0,0,59" Width="260" Height="83" VerticalAlignment="Bottom" FontSize="24" SelectedIndex="0" Header="Shuffle:">
         </ComboBox>
-        <Slider x:ConnectionId='8' x:Name="speedSlider" Height="75" Margin="0,0,7,39" VerticalAlignment="Bottom" Header="Sorting speed:" Maximum="45" Value="25" SmallChange="1" IsDirectionReversed="True" HorizontalAlignment="Right" Width="456" FontSize="24"/>
-        <Button x:ConnectionId='9' x:Name="pauseButton" Content="Pause" Margin="0,0,475,161"                           Background="#FF686868" Foreground="White" BorderBrush="{x:Null}" FontWeight="Bold" HorizontalAlignment="Right" Width="90" Height="71" VerticalAlignment="Bottom" FontSize="18"/>
-        <muxc:NumberBox x:ConnectionId='10' x:Name="ArraySize" Margin="301,0,0,58" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="125" Header="Array size:" Value="200" FontSize="24"                                      />
+        <Slider x:ConnectionId='9' x:Name="speedSlider" Height="75" Margin="0,0,7,59" VerticalAlignment="Bottom" Header="Sorting speed:" Maximum="45" Value="25" SmallChange="1" IsDirectionReversed="True" HorizontalAlignment="Right" Width="433" FontSize="24" x:FieldModifier="public"/>
+        <Button x:ConnectionId='10' x:Name="pauseButton" Content="Pause" Margin="0,0,240,139"                           Background="#FF686868" Foreground="White" BorderBrush="{x:Null}" FontWeight="Bold" HorizontalAlignment="Right" Width="200" Height="59" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.504,0.71"/>
+        <muxc:NumberBox x:ConnectionId='11' x:Name="ArraySize" Margin="301,0,0,100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="125" Header="Array size:" Value="200" FontSize="24"                                       x:FieldModifier="public"/>
 
-        <CheckBox Content="Sound" Margin="303,0,0,16" VerticalAlignment="Bottom" FontSize="24"/>
-        <Slider HorizontalAlignment="Right" Margin="0,0,520,46" VerticalAlignment="Bottom" Width="166" Header="Sound volume:" Maximum="100" StepFrequency="10" Value="100" FontSize="24"/>
-        <TextBlock x:ConnectionId='11' x:Name="CompsText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Comparisons:" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock x:ConnectionId='12' x:Name="SwapsText" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Text="Swaps:" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock x:ConnectionId='13' x:Name="ReversalsText" HorizontalAlignment="Left" Margin="10,84,0,0" TextWrapping="Wrap" Text="Reversals:" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock x:ConnectionId='14' x:Name="WritesText" HorizontalAlignment="Left" Margin="10,121,0,0" TextWrapping="Wrap" Text="Writes:" VerticalAlignment="Top" FontSize="24"/>
-        <muxc:NumberBox x:ConnectionId='15' x:Name="BucketCountBox" Margin="301,0,0,186" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="125" Header="Base:" Value="2" FontSize="24"/>
+        <CheckBox Content="Sound" Margin="0,0,280,26" VerticalAlignment="Bottom" FontSize="24" HorizontalAlignment="Right"/>
+        <Slider HorizontalAlignment="Right" Margin="0,0,38,10" VerticalAlignment="Bottom" Width="166" Header="Sound volume:" Maximum="100" StepFrequency="10" Value="100" FontSize="24"/>
+        <TextBlock x:ConnectionId='12' x:Name="ReadsText" HorizontalAlignment="Left" Margin="170,7,0,0" TextWrapping="Wrap" Text="Reads:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='13' x:Name="CompsText" HorizontalAlignment="Left" Margin="170,41,0,0" TextWrapping="Wrap" Text="Comparisons:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='14' x:Name="SwapsText" HorizontalAlignment="Left" Margin="170,78,0,0" TextWrapping="Wrap" Text="Swaps:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='15' x:Name="ReversalsText" HorizontalAlignment="Left" Margin="170,115,0,0" TextWrapping="Wrap" Text="Reversals:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='16' x:Name="MainWritesText" HorizontalAlignment="Left" Margin="170,152,0,0" TextWrapping="Wrap" Text="Main Writes:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='17' x:Name="AuxWritesText" HorizontalAlignment="Left" Margin="170,186,0,0" TextWrapping="Wrap" Text="Aux Writes:" VerticalAlignment="Top" FontSize="24"/>
+        <muxc:NumberBox x:ConnectionId='18' x:Name="BucketCountBox" Margin="301,0,0,186" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="125" Header="Base:" Value="2" FontSize="24"/>
+        <TextBlock x:ConnectionId='19' x:Name="ReadsText_Copy" HorizontalAlignment="Left" Margin="16,7,0,0" TextWrapping="Wrap" Text="Reads:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='20' x:Name="CompsText_Copy" HorizontalAlignment="Left" Margin="16,41,0,0" TextWrapping="Wrap" Text="Comparisons:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='21' x:Name="SwapsText_Copy" HorizontalAlignment="Left" Margin="16,78,0,0" TextWrapping="Wrap" Text="Swaps:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='22' x:Name="ReversalsText_Copy" HorizontalAlignment="Left" Margin="16,115,0,0" TextWrapping="Wrap" Text="Reversals:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='23' x:Name="MainWritesText_Copy" HorizontalAlignment="Left" Margin="16,152,0,0" TextWrapping="Wrap" Text="Main Writes:" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:ConnectionId='24' x:Name="AuxWritesText_Copy" HorizontalAlignment="Left" Margin="16,186,0,0" TextWrapping="Wrap" Text="Aux Writes:" VerticalAlignment="Top" FontSize="24"/>
+        <CheckBox x:ConnectionId='25' x:Name="ShuffleCheck" Content="Let shuffle use other shuffles" Margin="31,0,0,13" VerticalAlignment="Bottom" FontSize="16" IsChecked="True"/>
 
     </Grid>
 </Page>

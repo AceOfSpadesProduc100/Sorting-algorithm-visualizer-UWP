@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CDog2\\source\\repos\\AlgoUWP\\AlgoUWP.csproj": {}
+    "C:\\Users\\CDog2\\OneDrive\\AlgoUWP\\AlgoUWP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CDog2\\source\\repos\\AlgoUWP\\AlgoUWP.csproj": {
+    "C:\\Users\\CDog2\\OneDrive\\AlgoUWP\\AlgoUWP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CDog2\\source\\repos\\AlgoUWP\\AlgoUWP.csproj",
+        "projectUniqueName": "C:\\Users\\CDog2\\OneDrive\\AlgoUWP\\AlgoUWP.csproj",
         "projectName": "AlgoUWP",
-        "projectPath": "C:\\Users\\CDog2\\source\\repos\\AlgoUWP\\AlgoUWP.csproj",
+        "projectPath": "C:\\Users\\CDog2\\OneDrive\\AlgoUWP\\AlgoUWP.csproj",
         "packagesPath": "C:\\Users\\CDog2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CDog2\\source\\repos\\AlgoUWP\\obj\\",
+        "outputPath": "C:\\Users\\CDog2\\OneDrive\\AlgoUWP\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -28,7 +28,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\CDog2\\OneDrive\\Downloads": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -46,7 +45,7 @@
             },
             "Microsoft.UI.Xaml": {
               "target": "Package",
-              "version": "[2.7.0, )"
+              "version": "[2.7.1, )"
             },
             "System.Numerics.Vectors": {
               "target": "Package",

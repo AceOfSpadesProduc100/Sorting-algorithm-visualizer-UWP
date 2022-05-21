@@ -1,1 +1,1 @@
-C:\Users\CDog2\source\repos\AlgoUWP\AlgoUWP.csproj;x64
+C:\Users\CDog2\OneDrive\AlgoUWP\AlgoUWP.csproj;x64

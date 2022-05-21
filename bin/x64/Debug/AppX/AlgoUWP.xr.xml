@@ -7,9 +7,11 @@
     <RootType FullName="Microsoft.UI.Xaml.Controls.XamlControlsResources" />
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
       <RootProperty Name="Background" />
+      <RootProperty Name="Resources" />
       <RootProperty Name="Content" />
       <RootEvent Name="SizeChanged" />
       <RootEvent Name="PointerReleased" />
+      <RootEvent Name="Loaded" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
@@ -36,6 +38,7 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Width" />
       <RootProperty Name="Flyout" />
+      <RootProperty Name="RenderTransformOrigin" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
@@ -46,7 +49,6 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="SelectedIndex" />
       <RootProperty Name="Header" />
-      <RootProperty Name="Items" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Slider">
       <RootProperty Name="Height" />
@@ -77,6 +79,8 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="FontSize" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="IsChecked" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="HorizontalAlignment" />
@@ -87,9 +91,6 @@
       <RootProperty Name="FontSize" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.NullExtension" />
-    <RootType FullName="Windows.UI.Xaml.Controls.ComboBoxItem">
-      <RootProperty Name="Content" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">
       <RootProperty Name="Items" />
     </RootType>
